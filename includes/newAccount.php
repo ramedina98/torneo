@@ -1,0 +1,3 @@
+<?php 
+    //aqui llevaremos todo el proceso para registrar la nueva cuenta...
+?>

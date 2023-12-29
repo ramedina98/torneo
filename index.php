@@ -18,7 +18,7 @@
         $passForm = $_POST['password'];
 
         if($user->userExists($userForm, $passForm)){
-            //here must be the dashboard...
+            //here must be the home page...
             $userSession->setCurrentUser($userForm);
             $user->setUser($userForm);
 

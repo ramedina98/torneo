@@ -19,11 +19,13 @@
     <link rel="stylesheet" href="../style/register.css">
     <!--JS-->
     <script src="../logic/login.js" defer></script>
+    <script src="../logic/validacionRegister.js" defer></script>
     <!--Fonts of google and icons-->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
-    <form action="" method="POST">
+    <?php //TODO: verificar porque no esta funcionado la ruta?? ?>
+    <form action="../includes/newAcc.php" method="POST">
         <div class="icono_user">
             <i class='bx bx-user-circle'></i>
         </div>
@@ -66,12 +68,12 @@
             <label>Nombre de usuario</label>
             <input type="text" name="username" placeholder="eje: luis_miguel">
             <label>Password</label>
-            <input type="password" class="password_input" name="password" placeholder="eje: ********">
+            <input type="password" class="password_input" name="password" placeholder="eje: @unedl24">
             <div class="viewable_cont">
                 <button class="viewable_btn" id="view_btn_1"><i class='bx bxs-face'></i> Ver contraseña</button>
             </div>
-            <label>Confirmar contraseña</label>
-            <input type="password" class="password_input_conf" name="password" placeholder="confirma contraseña">
+            <label>Confirmar password</label>
+            <input type="password" class="password_input_conf" name="password_conf" placeholder="Confirme contraseña">
             <div class="viewable_cont">
                 <button class="viewable_btn" id="view_btn_2"><i class='bx bxs-face'></i> Ver contraseña</button>
             </div>

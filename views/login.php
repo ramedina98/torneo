@@ -13,7 +13,7 @@
     <title>Inicio de session || Gym</title>
     <!--icon-->
     <!--TODO: verificar que el logo si se vea cuando este en el host...--> 
-    <link rel="icon" href="img/inicio_session.ico">
+    <link rel="icon" href="views/img/inicio_session.ico">
     <!--css-->
     <link rel="stylesheet" href="style/login.css">
     <!--JS-->
@@ -44,8 +44,8 @@
             </div>
         </div>
         <div class="btns">
-            <input type="submit" value="Iniciar Sesión" class="btn">
-            <a href="views/signUp.php" class="btn">Registrarse</a>
+            <input type="submit" value="Iniciar Sesión" name="login_button" class="btn">
+            <a href="index.php?register=true" class="btn">Registrarse</a>
         </div>
     </form>
 </body>

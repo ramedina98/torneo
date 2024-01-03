@@ -14,25 +14,23 @@
     <title>Crear cuenta nueva || Gym</title>
     <!--icon-->
     <!--TODO: verificar que el logo si se vea cuando este en el host...--> 
-    <link rel="icon" href="./img/register.ico">
+    <link rel="icon" href="/views/img/register.ico">
     <!--css-->
-    <link rel="stylesheet" href="../style/register.css">
+    <link rel="stylesheet" href="style/register.css">
     <!--JS-->
-    <script src="../logic/login.js" defer></script>
-    <script src="../logic/validacionRegister.js" defer></script>
+    <script src="logic/login.js" defer></script>
+    <script src="logic/validacionRegister.js" defer></script>
     <!--Fonts of google and icons-->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
-    <?php //TODO: verificar porque no esta funcionado la ruta?? ?>
-    <form action="../includes/newAcc.php" method="POST">
+    <form action="" method="POST">
         <div class="icono_user">
             <i class='bx bx-user-circle'></i>
         </div>
         <?php
-        //TODO: Este debe de cambiar y avisar que ya existe una cuenta con ese nombre...
-            if(isset($errorLogin)){
-                echo $errorLogin;
+            if(isset($errorSign)){
+                echo $errorSign;
             }
         ?>
         <div class="bienvenida">
@@ -80,8 +78,8 @@
         </div>
 
         <div class="btns">
-            <input type="submit" value="Crear cuenta" class="btn">
-            <a href="../index.php" class="btn">Rregresar</a>
+            <input type="submit" value="Crear cuenta" name="register_button" class="btn">
+            <a href="index.php" class="btn">Rregresar</a>
         </div>
     </form>
 </body>

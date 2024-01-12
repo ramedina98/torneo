@@ -28,7 +28,7 @@
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="style/assets/css/style.css" rel="stylesheet">
+  <link href="style/css/style.css" rel="stylesheet">
 
 </head>
 

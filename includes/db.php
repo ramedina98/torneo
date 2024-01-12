@@ -1,5 +1,16 @@
 <!--this is the code for the connection to the database...-->
 <?php
+
+    require __DIR__ . '/../vendor/autoload.php'; // Asegúrate de agregar '/../' para subir un nivel y acceder a la carpeta 'vendor'.
+    use Dotenv\Dotenv;
+    
+    try {
+        $dotenv = Dotenv::createImmutable(__DIR__);
+        $dotenv->load();
+    } catch (Exception $e) {
+        die("Error loading Dotenv: " . $e->getMessage());
+    }
+
     class DB_torneo{
         private $host; 
         private $db; 
@@ -8,10 +19,10 @@
         private $charset; 
 
         public function __construct(){
-            $this->host = 'localhost';
-            $this->db = 'torneos';
-            $this->user = 'root';
-            $this->password = "";
+            $this->host = $_ENV['DB_HOST_TORNEOS'];
+            $this->db = $_ENV['DB_TABLE_TORNEOS'];
+            $this->user = $_ENV['DB_USER_TORNEOS'];
+            $this->password = $_ENV['DB_PASSWORD_TORNEOS'];
             $this->charset = 'utf8mb4';
         }
 
@@ -42,10 +53,10 @@
         private $charset; 
 
         public function __construct(){
-            $this->host = 'localhost';
-            $this->db = 'empleados';
-            $this->user = 'root';
-            $this->password = "";
+            $this->host = $_ENV['DB_HOST_EMPLEADOS'];
+            $this->db = $_ENV['DB_TABLE_EMPLEADOS'];
+            $this->user = $_ENV['DB_USER_EMPLEADOS'];
+            $this->password = $_ENV['DB_PASSWORD_EMPLEADOS'];
             $this->charset = 'utf8mb4';
         }
 

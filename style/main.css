@@ -33,6 +33,9 @@
     width: 100%;
     height: auto;
     padding: 2em 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 #btn_add{
     padding: 0.7em;
@@ -43,7 +46,58 @@
 #btn_add i{
     font-size: 2em;
 }
+#cont_inputSearch{
+    width: 400px;
+}
 .datos_rows td, 
 .datos_rows th{
     color: rgb(0, 62, 105);
+}
+.link_centro{
+    color: rgb(0, 62, 105);
+    text-decoration: none;
+}
+/*add participants form...*/
+.cont_form_add_participantes{
+    padding: 2em 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.form_participantes_add{
+    width: clamp(310px, 90%, 670px);
+    border-radius: 0.3em;
+    box-shadow: 0px 1px 2px rgba(18, 18, 18, 0.389);
+    padding: 1em;
+    & #cont_cuota_idSocio{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        & .l{
+            height: 100px;
+            width: 300px;
+        }
+    }
+    & #cont_pago_equipo{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        & .l{
+            height: 100px;
+            width: 300px;
+        }
+    }
+}
+@media screen and (max-width: 756px) {
+    .form_participantes_add #cont_cuota_idSocio .l {
+        width: 100%;
+    }
+    .form_participantes_add #cont_pago_equipo .l {
+        width: 100%;
+    }
 }

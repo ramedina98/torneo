@@ -27,7 +27,7 @@
             $user->setUser($userForm);
             $userData = $user->getName();
             session_start();
-
+            
             $_SESSION['userData'] = $userData;
 
             include_once 'views/home.php';

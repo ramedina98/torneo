@@ -11,5 +11,5 @@ $(document).on({
         $(this).fadeOut('normal', function() {
             $(this).html('<i class="bx bxs-plus-circle"></i>').fadeIn('normal');
         });
-    }
+    }, 
 }, '#btn_add');

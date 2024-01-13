@@ -1,6 +1,18 @@
 //this function helps us to convert the frist letter to capital letter...
 const firstCapitalLetter = (chain) => {
-    return chain.charAt(0).toUpperCase() + chain.slice(1);
+    let name = ''; //this is the variable that will be return...
+    //here we store the string with the first capital letter...
+    let CapitalLetter = chain.charAt(0).toUpperCase() + chain.slice(1);
+    
+    //we check if there are any underscore...
+    if(CapitalLetter.includes('_')){
+        let parts = CapitalLetter.split('_');
+        name = parts[0] + ' ' + parts[1];
+    } else{
+        name = CapitalLetter;
+    }
+
+    return name;
 }
 /*TODO: Tal vez poder cambiar el icono de la pestaña.
 Tambien el boton correspondiente en el nav debe de estar 

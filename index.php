@@ -1,10 +1,12 @@
 <?php 
     include_once 'includes/user.php';
     include_once 'includes/user_session.php';
+    //TODO: checar si es necesario esto aqui...
     include_once 'includes/torneo.php';
 
     $userSession = new UserSession();
     $user = new User();
+    //TODO: checar esto, por si es necesario aqui...
     $torneo = new Torneo();
     
     if(isset($_SESSION['user'])){

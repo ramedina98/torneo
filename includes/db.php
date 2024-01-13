@@ -1,9 +1,9 @@
 <!--this is the code for the connection to the database...-->
 <?php
-
+    //We go through the whole process to use the environment variables
     require __DIR__ . '/../vendor/autoload.php'; // Asegúrate de agregar '/../' para subir un nivel y acceder a la carpeta 'vendor'.
     use Dotenv\Dotenv;
-    
+    //this try catch is to make sure that everything is ok and we will not get any errors...
     try {
         $dotenv = Dotenv::createImmutable(__DIR__);
         $dotenv->load();
@@ -11,6 +11,7 @@
         die("Error loading Dotenv: " . $e->getMessage());
     }
 
+    //classes start here...
     class DB_torneo{
         private $host; 
         private $db; 

@@ -12,7 +12,6 @@
     <!-- Here I have to writte an base tag -->
     <title>Inicio de session || Gym</title>
     <!--icon-->
-    <!--TODO: verificar que el logo si se vea cuando este en el host...--> 
     <link rel="icon" href="views/img/inicio_session.ico">
     <!--css-->
     <link rel="stylesheet" href="style/login.css">

@@ -14,7 +14,7 @@
         </div>
     </div>
     <?php 
-        include_once '../../includes/torneo.php';
+        include_once '../../includes/db/torneo.php';
         $torneo = new Torneo();
         $Torneos = $torneo->getTorneos();
 

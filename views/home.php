@@ -11,7 +11,7 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
   <title>Torneos</title>
-  <!--TODO: desarrollar esto...-->
+
   <meta name="description" content="¡Regístrate para participar en los emocionantes torneos deportivos ofrecidos por el Gimnasio NombreDelGimnasio! Encuentra información detallada sobre los eventos, deportes en competición, condiciones de participación y más. ¡Explora nuestro calendario de torneos y únete a la acción deportiva!">
   <meta name="keywords" content="torneos deportivos, registro de torneos, deportes en competición, condiciones de participación, gimnasio, actividades deportivas, calendario de torneos, inscripciones a eventos deportivos">
 
@@ -51,14 +51,6 @@
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
-
-    <!-- TODO: checar si es necesario esta barra de busqueda...
-    <div class="search-bar">
-      <form class="search-form d-flex align-items-center" method="POST" action="#">
-        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
-        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-      </form>
-    </div> End Search Bar -->
 
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
@@ -273,8 +265,7 @@
   </aside><!-- End Sidebar-->
 
   <main id="main" class="main">
-    <!--TODO: esto va a ser dinamico, tiene que cambiar conforme a 
-    la seccion donde estes...-->
+
     <div class="pagetitle">
       <h1 id="title"></h1>
     </div><!-- End Page Title -->

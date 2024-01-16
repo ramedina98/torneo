@@ -79,6 +79,20 @@
             }
         }
 
+        //search and obtain info from a participant...
+        public function getParticipante($id){
+            $query = $this->connect()->prepare('SELECT * FROM inscritoTorneo WHERE idinscritoTorneo = :id');
+            $query->execute(['id' => $id]);
+
+            try{
+                $res = $query->fetch(PDO::FETCH_ASSOC);
+                return $res;
+            } catch(PDOException $e){
+                echo 'Error al ejecutar la consulta' .$e->getMessage();
+                return null;
+            }
+        }
+
         //existing tournaments...
         public function getTorneos(){
             $query = $this->connect()->prepare('SELECT
@@ -105,6 +119,74 @@
             } catch(PDOException $e){
                 echo 'Error al ejecutar la consulta' .$e->getMessage();
                 return null;
+            }
+        }
+
+        //POST...
+        public function postParticipante($data){
+            try{
+                //we prepare the data obtained by the form...
+                $idSocio = (int)$data['idsocio'];
+                $cuota = (double)$data['cuota'];
+                $estatusPago = (int)$data['estatus'];
+                $nombreEquipo = $data['nombreEquipo'];
+                $torneo = (int)$data['torneo'];
+
+                //send the data...
+                $query = $this->connect()->prepare("INSERT INTO inscritoTorneo (socio, cuota, statusPago, nombreEquipo, torneo)
+                VALUES('$idSocio', '$cuota', '$estatusPago', '$nombreEquipo', '$torneo')");
+                $query->execute();
+
+                echo 'Participante inscrito con exito.';
+
+            } catch(Exception $e){
+                echo 'Error: ' . $e->getMessage();
+            }
+        }
+
+        //UPDATE...
+        public function updateParticipante($data){
+            try{
+                //we prepare the data obtained by the form...
+                $idstorneo = (int)$data['idinscritoTorneo'];
+                $idSocio = (int)$data['idsocio'];
+                $cuota = (double)$data['cuota'];
+                $estatusPago = (int)$data['estatus'];
+                $nombreEquipo = $data['nombreEquipo'];
+                $torneo = (int)$data['torneo'];
+
+                $query = $this->connect()->prepare('UPDATE inscritoTorneo 
+                SET socio = :idSocio,
+                    cuota = :cuota,
+                    statusPago = :estatusPago,
+                    nombreEquipo = :nombreEquipo,
+                    torneo = :torneo
+                WHERE idinscritoTorneo = :idstorneo');
+                $query->execute([
+                    'idstorneo' => $idstorneo,
+                    'idSocio' => $idSocio,
+                    'cuota' => $cuota,
+                    'estatusPago' => $estatusPago,
+                    'nombreEquipo' => $nombreEquipo,
+                    'torneo' => $torneo,
+                ]);
+
+                echo 'actualizado con exito';
+            } catch(Exception $e){
+                echo 'Error: ' . $e->getMessage();
+            }
+        }
+
+        //DELETE...
+        public function deleteParticipante($id){
+            try{
+                $query = $this->connect()->prepare("DELETE FROM inscritoTorneo WHERE idinscritoTorneo = $id");
+                $query->execute();
+
+                echo 'Borrado con exito.';
+
+            } catch (Exception $e){
+                echo 'Error: ' . $e->getMessage();
             }
         }
     }

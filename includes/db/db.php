@@ -1,7 +1,7 @@
 <!--this is the code for the connection to the database...-->
 <?php
     //We go through the whole process to use the environment variables
-    require __DIR__ . '/../vendor/autoload.php'; // Asegúrate de agregar '/../' para subir un nivel y acceder a la carpeta 'vendor'.
+    require __DIR__ . '/../../vendor/autoload.php'; 
     use Dotenv\Dotenv;
     //this try catch is to make sure that everything is ok and we will not get any errors...
     try {
@@ -79,18 +79,4 @@
             }
         }
     }
-
-    /*
-    $database1 = new DB_torneo();
-    $database2 = new DB_empleados();
-
-    $pdo_connection = $database1->connect();
-    $pdo_connection2 = $database2->connect();
-
-    if ($pdo_connection && $pdo_connection2) {
-        echo 'Conexión exitosa a ambas bases de datos';
-    } else {
-        echo 'Fallo la conexión...';
-    }
-    */
 ?>

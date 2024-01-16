@@ -59,11 +59,36 @@
 }
 /*add participants form...*/
 .cont_form_add_participantes{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     padding: 2em 0;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.cont_btn_regresar{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 1em;
+    margin-bottom: 1em;
+    & a{
+        width: 250px;
+        padding: 0.6em;
+        font-size: 1.2em;
+        font-weight: 500;
+        background-color: rgb(0, 62, 105);
+        color: white;
+    }
+    & a:hover{
+        transition: all 250ms ease-in-out;
+        background-color: rgb(2, 83, 141);
+        color: white;
+    }
 }
 .form_participantes_add{
     width: clamp(310px, 90%, 670px);
@@ -79,6 +104,9 @@
         & .l{
             height: 100px;
             width: 300px;
+            & #showName_span{
+                color: black;
+            }
         }
     }
     & #cont_pago_equipo{
@@ -91,13 +119,83 @@
             height: 100px;
             width: 300px;
         }
+        & #cont_n_equipo{
+            position: relative;
+            & #sugerencias{
+                display: none;
+                position: absolute;
+                top: 75px;
+                width: 300px;
+                height: auto;
+                max-height: 150px;
+                overflow-y: auto;
+                padding: 0.5em;
+                border-radius: 0.3em;
+                background-color: rgb(236, 236, 236);
+                & .sugerencia_item{
+                    width: 100%;
+                    padding: 0.6em;
+                    text-align: left;
+                    cursor: pointer;
+                }
+                & .sugerencia_item:hover{
+                    background-color: white;
+                    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.315);
+                    transition: all ease-in-out 300ms;
+                }
+            }
+        }
+    }
+    & .cont_btns_participantes_form{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        & .b{
+            width: 250px;
+            padding: 0.7em;
+            font-size: 1.2em;
+        }
+    }
+    /*warning colors: incorrect data in input*/
+    & .shake{
+        border-color: red;
+        color: red;
+        animation: shake 2s ease-in-out;
+    }
+    & .shakeLabel{
+        color: red;
+        animation: shake 2s ease-in-out;
     }
 }
+.warnings{
+    border-color: red;
+    animation: shake ;
+}
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25%, 75% {
+        transform: translateX(-5px);
+    }
+    50% {
+        transform: translateX(5px);
+    }
+}
+#edit_form_participantes{
+    display: none;
+}
+
 @media screen and (max-width: 756px) {
     .form_participantes_add #cont_cuota_idSocio .l {
         width: 100%;
     }
     .form_participantes_add #cont_pago_equipo .l {
+        width: 100%;
+    }
+    .form_participantes_add .cont_btns_participantes_form .b{
         width: 100%;
     }
 }

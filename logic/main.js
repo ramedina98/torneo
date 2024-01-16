@@ -17,8 +17,6 @@ const firstCapitalLetter = (chain) => {
 /*TODO: Tal vez poder cambiar el icono de la pestaña.
 Tambien el boton correspondiente en el nav debe de estar 
 sobre saltado... */
-
-//global variable... <-- TODO: Checar si esto esta bien...
 let previusID = null;
 const highlightBtn = (previusID, currentID) => {
     //we remove the class...

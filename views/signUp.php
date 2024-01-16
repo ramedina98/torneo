@@ -13,7 +13,6 @@
     <!-- Here I have to writte an base tag -->
     <title>Crear cuenta nueva || Gym</title>
     <!--icon-->
-    <!--TODO: verificar que el logo si se vea cuando este en el host...--> 
     <link rel="icon" href="/views/img/register.ico">
     <!--css-->
     <link rel="stylesheet" href="style/register.css">

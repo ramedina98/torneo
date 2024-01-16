@@ -1,13 +1,9 @@
 <?php 
-    include_once 'includes/user.php';
-    include_once 'includes/user_session.php';
-    //TODO: checar si es necesario esto aqui...
-    include_once 'includes/torneo.php';
+    include_once 'includes/db/user.php';
+    include_once 'includes/empleadosControllers/user_session.php';
 
     $userSession = new UserSession();
     $user = new User();
-    //TODO: checar esto, por si es necesario aqui...
-    $torneo = new Torneo();
     
     if(isset($_SESSION['user'])){
         /*If there is a session already started, it will notify us and 

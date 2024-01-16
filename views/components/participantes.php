@@ -13,62 +13,49 @@
             <input type="text" class="form-control" placeholder="Buscar participante" aria-label="Example text with button addon" aria-describedby="button-addon1" id="searchInput">
         </div>
     </div>
-    <?php 
-        include_once '../../includes/torneo.php';
-        $torneo = new Torneo();
-        $participantes = $torneo->getParticipantes();
+    <table class="table">
+        <thead class="datos_rows">
+            <tr>
+                <th scope="col">Id T</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido P</th>
+                <th scope="col">Apellido M</th>
+                <th scope="col">N. Equipo</th>
+                <th scope="col">Torneo</th>
+                <th scope="col">Acción</th>
+            </tr>
+        </thead>
 
-        // Verifica si la variable de participantes no es nula y tiene elementos
-        if ($participantes !== null && !empty($participantes)) {
-            ?>
-            <table class="table">
-                <thead class="datos_rows">
-                    <tr>
-                        <th scope="col">Id T</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Apellido P</th>
-                        <th scope="col">Apellido M</th>
-                        <th scope="col">N. Equipo</th>
-                        <th scope="col">Torneo</th>
-                        <th scope="col">Acción</th>
-                    </tr>
-                </thead>
+        <tbody class="table-group-divider">
+            
+        </tbody>
+    </table>
 
-                <tbody class="table-group-divider">
-                    <?php
-                    // Itera sobre cada participante e imprime una fila en la tabla
-                    foreach ($participantes as $participante) {
-                    ?>
-                        <tr class="datos_rows">
-                            <th scope="row"><?php echo $participante['idinscritoTorneo']; ?></th>
-                            <td><?php echo $participante['nombreSocio']; ?></td>
-                            <td><?php echo $participante['apellidoP']; ?></td>
-                            <td><?php echo $participante['apellidoM']; ?></td>
-                            <td><?php echo $participante['nombreEquipo']; ?></td>
-                            <td><?php echo $participante['nombreTorneo']; ?></td>
-                            <td>
-                                <button type="button" class="btn btn-success">
-                                    <i class='bx bxs-edit-alt'></i>
-                                </button>
-                                <button type="button" class="btn btn-danger">
-                                    <i class='bx bxs-x-circle'></i>
-                                </button>
-                            </td>
-                        </tr>
-                    <?php
-                    }
-                    ?>
-                </tbody>
-            </table>
-        <?php
-        } else {
-            echo 'No hay datos de participantes disponibles.';
-        }
+    <div class="cont_form_add_participantes" id="edit_form_participantes">
 
-    ?>
+    </div>
+
     <script>
         //this script is to perform the dynamic search with the search input...
         $(document).ready(function(){
+            //handle the load of the data in the table...
+            function dataParticipantesTable() {
+                // Perform a new AJAX request to fetch the updated data for the table
+                $.ajax({
+                    type: 'GET', // Assuming you have a separate PHP file to fetch the table data
+                    url: 'includes/torneoControllers/getParticipantes.php', // Change this to the actual URL
+                    success: function(data){
+                        // Assuming 'data' is the HTML content for the updated table
+                        $('.table-group-divider').html(data);
+                    },
+                    error: function(error){
+                        alert('Error fetching updated table data: ' + error.responseText);
+                    }
+                });
+            }
+
+            dataParticipantesTable();
+
             //handle event keyup of the search input...
             $('#searchInput').keyup(function(){
                 var searchText = $(this).val().toLowerCase();
@@ -82,6 +69,110 @@
                         $(this).show(); //Show the rows that match...
                     }
                 })
+            })
+
+            //here we handle the btn delete...
+            $(document).on('click', '.delete-btn', function() {
+                //we obtain the id of the register...
+                var idinscritoTorneo = $(this).data('idinscrito');
+                //AJAX request...
+                $.ajax({
+                    type: 'POST',
+                    url: 'includes/torneoControllers/deleteParticipante.php',
+                    data: {id: idinscritoTorneo},
+                    success: function(response){
+                        dataParticipantesTable();
+                    }, 
+                    error: function(error){
+                        alert('Error:' + $(error).text());
+                    }
+                });
+            });
+
+            //function to handle the update btn...
+            $(document).on('click', '.edit-btn', function(){
+                //we obtain the id of the register...
+                var idinscritoTorneo = $(this).data('idinscrito');
+
+                //the container of the form to edit information appears...
+                $('#edit_form_participantes').css('display', 'flex');
+                //we get the data...
+                $.ajax({
+                    type: 'GET',
+                    url: 'includes/torneoControllers/getParticipante.php',
+                    data: {id: idinscritoTorneo},
+                    success: function(response){
+                        $('#edit_form_participantes').html(response);
+                    }, 
+                    error: function(error){
+                        alert('Error:' + $(error).text());
+                    }
+                });
+            });
+
+            //handle the edit btn of the form...
+            $('body').on('click', '#agregar_participantes_btn', function(event) {
+                event.preventDefault();
+
+                const form = $('form');
+                const labels = $('form label');
+                let emptyInputs = false; 
+
+                //check if any input is empty...
+                form.find('input').each(function(){
+                    const currentInput = $(this);
+                    if (currentInput.val().trim() === '') {
+                        //if there is an empty input, emptyInput = true...
+                        emptyInputs = true;
+                        /*we quickly go through each empty input label indicating that
+                        it cannot be empty...*/
+                        const label = form.find('label[for="' + currentInput.attr('id') + '"]');
+                        label.text('No puede estar vacío');
+                        
+                        // add the class...
+                        currentInput.addClass('shake');
+                        
+                        // remove the class after the animation is finished...
+                        currentInput.one('animationend', function(){
+                            currentInput.removeClass('shake');
+                        });
+                    }
+                });
+                
+                if(!emptyInputs){
+                    //creamos un array...
+                    const data = {
+                        idinscritoTorneo: $('#idstorneo').val(),
+                        idsocio: $('#inputSocio').val(),
+                        cuota: $('#inputCuota').val(),
+                        estatus: $('#select_Es_pago').val(),
+                        nombreEquipo: $('#nombreEquipo').val(),
+                        torneo: $('#select_torneo').val()
+                    }
+
+                    //AJAX request...
+                    $.ajax({
+                    type: 'POST',
+                    url: 'includes/torneoControllers/updateParticipanteData.php',
+                    data: {data: data},
+                    success: function(response){
+                        //we hide the element...
+                        $('#edit_form_participantes').css('display', 'none');
+                        dataParticipantesTable();
+                    },
+                    error: function(error){
+                        alert($(error).text());
+                    }
+                })
+                } else {
+                    console.log('No puede haber ningun campo vacio');
+                }
+            });
+
+            //handle the cancel btn of the form...
+            $('body').on('click', '#cancelar_participante_btn', function(){
+                //the container of the form to edit information appears...
+                $('#edit_form_participantes').css('display', 'none');
             })
         })
     </script>

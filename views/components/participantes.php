@@ -71,6 +71,22 @@
                 })
             })
 
+            //here we handle the btn add...
+            $('#btn_add').on({
+                mouseenter: function () {
+                    //Event when hovering over the button...
+                    $(this).fadeOut('normal', function() {
+                        $(this).html('<i class="bx bxs-plus-circle"></i> Añadir un nuevo participante').fadeIn('normal');
+                    });
+                },
+                mouseleave: function () {
+                    //Event whe th cursor is removed from the button...
+                    $(this).fadeOut('normal', function() {
+                        $(this).html('<i class="bx bxs-plus-circle"></i>').fadeIn('normal');
+                    });
+                }, 
+            });
+
             //here we handle the btn delete...
             $(document).on('click', '.delete-btn', function() {
                 //we obtain the id of the register...

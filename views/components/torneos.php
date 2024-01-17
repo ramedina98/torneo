@@ -1,8 +1,8 @@
 <div>
     <div class="container_btn_add">
-        <button type="button" class="btn btn-primary" id="btn_add">
+        <a href="#agregar_torneo" type="button" class="btn btn-primary" id="btn_add">
             <i class='bx bxs-plus-circle'></i> 
-        </button>
+        </a>
         <!--input to search by name--> 
         <div class="input-group mb-3" id="cont_inputSearch">
             <button class="btn btn-outline-secondary" type="button" id="button-addon1">
@@ -13,62 +13,28 @@
             <input type="text" class="form-control" placeholder="Buscar torneo" aria-label="Example text with button addon" aria-describedby="button-addon1" id="searchInput">
         </div>
     </div>
-    <?php 
-        include_once '../../includes/db/torneo.php';
-        $torneo = new Torneo();
-        $Torneos = $torneo->getTorneos();
+    <table class="table">
+        <thead class="datos_rows">
+            <tr>
+                <th scope="col">Id T</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Deporte</th>
+                <th scope="col">Limite</th>
+                <th scope="col">Inicio</th>
+                <th scope="col">Centro</th>
+                <th scope="col">Acción</th>
+            </tr>
+        </thead>
 
-        // Verifica si la variable de participantes no es nula y tiene elementos
-        if ($Torneos !== null && !empty($Torneos)) {
-            ?>
-            <table class="table">
-                <thead class="datos_rows">
-                    <tr>
-                        <th scope="col">Id T</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Deporte</th>
-                        <th scope="col">Limite</th>
-                        <th scope="col">Inicio</th>
-                        <th scope="col">Centro</th>
-                        <th scope="col">Acción</th>
-                    </tr>
-                </thead>
+        <tbody class="table-group-divider" id="table_torneos">
+            
+        </tbody>
+    </table>
 
-                <tbody class="table-group-divider">
-                    <?php
-                    // Itera sobre cada participante e imprime una fila en la tabla
-                    foreach ($Torneos as $t) {
-                    ?>
-                        <tr class="datos_rows">
-                            <th scope="row"><?php echo $t['idtorneo']; ?></th>
-                            <td><?php echo $t['nombre_torneo']; ?></td>
-                            <td><?php echo $t['nombre_deporte']; ?></td>
-                            <td><?php echo $t['limite']; ?></td>
-                            <td><?php echo $t['fechainicio']; ?></td>
-                            <td>
-                                <a href="?id=<?php echo $t['idcentro']; ?>#centro" class="link_centro">
-                                    <?php echo $t['nombre_centro']; ?>
-                                </a>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-success">
-                                    <i class='bx bxs-edit-alt'></i>
-                                </button>
-                                <button type="button" class="btn btn-danger">
-                                    <i class='bx bxs-x-circle'></i>
-                                </button>
-                            </td>
-                        </tr>
-                    <?php
-                    }
-                    ?>
-                </tbody>
-            </table>
-        <?php
-        } else {
-            echo 'No hay datos de participantes disponibles.';
-        }
-    ?>
+    <div class="cont_form_add_participantes" id="edit_form_participantes">
+
+    </div>
+
     <script>
         //this script is to perform the dynamic search with the search input...
         $(document).ready(function(){
@@ -85,6 +51,172 @@
                         $(this).show(); //Show the rows that match...
                     }
                 })
+            })
+
+            //here we handle the information that we choose from the tournament table...
+            function dataTournamentTable() {
+                // Perform a new AJAX request to fetch the updated data for the table
+                $.ajax({
+                    type: 'GET', // Assuming you have a separate PHP file to fetch the table data
+                    url: 'includes/torneoControllers/getTorneos.php', // Change this to the actual URL
+                    success: function(data){
+                        // Assuming 'data' is the HTML content for the updated table
+                        $('#table_torneos').html(data);
+                    },
+                    error: function(error){
+                        alert('Error fetching updated table data: ' + error.responseText);
+                    }
+                });
+            }
+
+            dataTournamentTable();
+
+            //here we handle the btn add...
+            $('#btn_add').on({
+                mouseenter: function () {
+                    //Event when hovering over the button...
+                    $(this).fadeOut('normal', function() {
+                        $(this).html('<i class="bx bxs-plus-circle"></i> Añadir un nuevo torneo').fadeIn('normal');
+                    });
+                },
+                mouseleave: function () {
+                    //Event whe th cursor is removed from the button...
+                    $(this).fadeOut('normal', function() {
+                        $(this).html('<i class="bx bxs-plus-circle"></i>').fadeIn('normal');
+                    });
+                }, 
+            });
+
+            //here we handle the btn delete function...
+            $(document).on('click', '.delete_btn_torneo', function() {
+
+                //we obtain the id of the register...
+                var idTorneo = $(this).data('idinscrito');
+                //AJAX request...
+                $.ajax({
+                    type: 'POST',
+                    url: 'includes/torneoControllers/deleteTorneo.php',
+                    data: {id: idTorneo},
+                    success: function(response){
+                        dataTournamentTable();
+                    }, 
+                    error: function(error){
+                        alert('Error:' + $(error).text());
+                    }
+                });
+            });
+
+            //handle the btn edit...
+            $(document).on('click', '.edit_btn_torneo', function(){
+                //we obtain the id of the register...
+                var idinscritoTorneo = $(this).data('idinscrito');
+
+                //the container of the form to edit information appears...
+                $('#edit_form_participantes').css('display', 'flex');
+
+                //we get the data...
+                $.ajax({
+                    type: 'GET',
+                    url: 'includes/torneoControllers/getTorneo.php',
+                    data: {id: idinscritoTorneo},
+                    success: function(response){
+                        $('#edit_form_participantes').html(response);
+                        //scroll to the bottom of the page...
+                        $('html, body').animate({
+                            scrollTop: $(document).height() - $(window).height()
+                        }, 300);
+                    }, 
+                    error: function(error){
+                        alert('Error:' + $(error).text());
+                    }
+                });
+            });
+            
+            //here we handle the send btn...
+            const formatData = (dateString) => {
+                // El valor del input de datetime-local es una cadena en formato ISO 8601
+                const fecha = new Date(dateString);
+
+                const year = fecha.getFullYear();
+                const month = String(fecha.getMonth() + 1).padStart(2, '0');
+                const day = String(fecha.getDate()).padStart(2, '0');
+
+                const hours = String(fecha.getHours()).padStart(2, '0');
+                const minutes = String(fecha.getMinutes()).padStart(2, '0');
+
+                // Puedes omitir los segundos si no son necesarios en tu aplicación
+                // const seconds = String(fecha.getSeconds()).padStart(2, '0');
+
+                return `${year}-${month}-${day} ${hours}:${minutes}`;
+            };
+
+            //handle the update btn of the form...
+            $('body').on('click', '#update_centro_btn', function(event){
+                event.preventDefault();
+                
+                const form = $('form');
+                const labels = $('form label');
+                let emptyInputs = false; 
+
+                //check if any input is empty...
+                form.find('input').each(function(){
+                    const currentInput = $(this);
+                    if (currentInput.val().trim() === '') {
+                        //if there is an empty input, emptyInput = true...
+                        emptyInputs = true;
+                        /*we quickly go through each empty input label indicating that
+                        it cannot be empty...*/
+                        const label = form.find('label[for="' + currentInput.attr('id') + '"]');
+                        label.text('No puede estar vacío');
+                        
+                        // add the class...
+                        currentInput.addClass('shake');
+                        
+                        // remove the class after the animation is finished...
+                        currentInput.one('animationend', function(){
+                            currentInput.removeClass('shake');
+                        });
+                    }
+                });
+                
+                if(!emptyInputs){
+                    //formateamos la fecha... 
+                    var date = formatData($('#inputFecha').val());
+                    //new array with all the data...
+                    const data = {
+                        idtorneo: $('#idtorneo').val(),
+                        nombre: $('#inputNomTorneo').val(),
+                        deporte: $('#select_deporte').val(),
+                        limite: $('#inputLimite').val(),
+                        fechainicio: date, 
+                        instalacionesCentro: $('#select_centro').val()
+                    }
+
+                    //AJAX request...
+                    $.ajax({
+                    type: 'POST',
+                    url: 'includes/torneoControllers/updateTorneo.php',
+                    data: {data: data},
+                    success: function(response){
+                        //we hide the element...
+                        console.log('Estamos en el succes: ' + response);
+                        $('#edit_form_participantes').css('display', 'none');
+                        dataTournamentTable();
+                    }, 
+                    error: function(error){
+                        alert($(error).text());
+                    }
+                })
+                } else {
+                    alert('No puede haber ningun campo vacio');
+                }
+            });
+
+            //handle the cancel btn of the form...
+            $('body').on('click', '#cancelar_centro_btn', function(event){
+                event.preventDefault();
+                //the container of the form to edit information appears...
+                $('#edit_form_participantes').css('display', 'none');
             })
         })
     </script>

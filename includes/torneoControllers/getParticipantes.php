@@ -14,11 +14,12 @@
                 <td><?php echo $participante['apellidoM']; ?></td>
                 <td><?php echo $participante['nombreEquipo']; ?></td>
                 <td><?php echo $participante['nombreTorneo']; ?></td>
+                <td><?php echo $participante['statusPago']; ?> - $<?php echo $participante['cuota']; ?></td>
                 <td>
-                    <button type="button" class="btn btn-success edit-btn" data-idinscrito="<?php echo $participante['idinscritoTorneo']; ?>">
+                    <button type="button" class="btn btn-success edit_btn_participantes" data-idinscrito="<?php echo $participante['idinscritoTorneo']; ?>">
                         <i class='bx bxs-edit-alt'></i>
                     </button>
-                    <button type="button" class="btn btn-danger delete-btn" data-idinscrito="<?php echo $participante['idinscritoTorneo']; ?>">
+                    <button type="button" class="btn btn-danger delete_btn_participante" data-idinscrito="<?php echo $participante['idinscritoTorneo']; ?>">
                         <i class='bx bxs-x-circle'></i>
                     </button>
                 </td>

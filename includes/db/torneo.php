@@ -40,7 +40,10 @@
         }
         //centros...
         public function getCentro(){
-            $query = $this->connect()->prepare('SELECT * FROM centro');
+            $query = $this->connect()->prepare('SELECT ic.idinstalacionesCentro, ic.instalacion, c.nombre AS nombre_centro
+            FROM instalacionesCentro AS ic
+            INNER JOIN centro AS c ON ic.centro = c.idcentro;');
+            
             $query->execute();
 
             try{
@@ -100,7 +103,7 @@
                 T.nombre AS nombre_torneo,
                 D.nombre AS nombre_deporte,
                 T.limite,
-                DATE(T.fechainicio) as fechainicio,
+                T.fechainicio AS fechainicio,
                 C.nombre AS nombre_centro,
                 C.idcentro
             FROM
@@ -115,6 +118,19 @@
 
             try{
                 $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                return $res;
+            } catch(PDOException $e){
+                echo 'Error al ejecutar la consulta' .$e->getMessage();
+                return null;
+            }
+        }
+
+        public function getTorneo($id){
+            $query = $this->connect()->prepare('SELECT * FROM torneo WHERE idtorneo = :id');
+            $query->execute(['id' => $id]);
+
+            try{
+                $res = $query->fetch(PDO::FETCH_ASSOC);
                 return $res;
             } catch(PDOException $e){
                 echo 'Error al ejecutar la consulta' .$e->getMessage();
@@ -138,6 +154,34 @@
                 $query->execute();
 
                 echo 'Participante inscrito con exito.';
+
+            } catch(Exception $e){
+                echo 'Error: ' . $e->getMessage();
+            }
+        }
+
+        public function postTorneo($data){
+            try{
+                //we prepare the data obtained by the form...
+                $nombre = $data['nombre'];
+                $deporte = (int)$data['deporte'];
+                $limite = (int)$data['limite'];
+                $fechainicio = $data['fechainicio'];
+                $instalacionCentro = (int)$data['instalacionesCentro'];
+
+                //send the data...
+                $query = $this->connect()->prepare("INSERT INTO torneo (nombre, deporte, limite, fechainicio, instalacionesCentro)
+                        VALUES(:nombre, :deporte, :limite, :fechainicio, :instalacionCentro)");
+                $query->execute([
+                    'nombre' => $nombre,
+                    'deporte' => $deporte,
+                    'limite' => $limite,
+                    'fechainicio' => $fechainicio,
+                    'instalacionCentro' => $instalacionCentro
+                ]);
+
+
+                echo 'Torneo inscrito con exito.';
 
             } catch(Exception $e){
                 echo 'Error: ' . $e->getMessage();
@@ -177,6 +221,39 @@
             }
         }
 
+        public function updateTorneo($data){
+            try{
+                //we prepare the data obtained by the form...
+                $idtorneo = (int)$data['idtorneo'];//registration id...
+                $nombre = $data['nombre']; //the name of the tournament...
+                $deporte = (int)$data['deporte']; //sport id...
+                $limite = (int)$data['limite'];//maximun number of participants...
+                $fecha = $data['fechainicio'];//event start date and time...
+                $instalacionCentro = (int)$data['instalacionesCentro'];//center id...
+
+                $query = $this->connect()->prepare('UPDATE torneo 
+                SET nombre = :nombre,
+                    deporte = :deporte,
+                    limite = :limite,
+                    fechainicio = :fechainicio,
+                    instalacionesCentro = :instalacionCentro
+                WHERE idtorneo = :idtorneo');
+                $query->execute([
+                    'idtorneo' => $idtorneo,
+                    'nombre' => $nombre,
+                    'deporte' => $deporte,
+                    'limite' => $limite,
+                    'fechainicio' => $fecha,
+                    'instalacionCentro' => $instalacionCentro
+                ]);
+
+                echo 'actualizado con exito';
+
+            } catch(Exception $e){
+                echo 'Error: ' . $e->getMessage();
+            }
+        }
+
         //DELETE...
         public function deleteParticipante($id){
             try{
@@ -186,6 +263,18 @@
                 echo 'Borrado con exito.';
 
             } catch (Exception $e){
+                echo 'Error: ' . $e->getMessage();
+            }
+        }
+
+        public function deleteTorneo($id){
+            try{
+                $query = $this->connect()->prepare("DELETE FROM torneo WHERE idtorneo = $id");
+                $query->execute();
+
+                echo 'Borrado exitoso.';
+
+            } catch(Exception $e){
                 echo 'Error: ' . $e->getMessage();
             }
         }

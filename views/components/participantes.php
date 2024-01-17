@@ -22,6 +22,7 @@
                 <th scope="col">Apellido M</th>
                 <th scope="col">N. Equipo</th>
                 <th scope="col">Torneo</th>
+                <th scope="col">Es. Pago</th>
                 <th scope="col">Acción</th>
             </tr>
         </thead>
@@ -88,7 +89,7 @@
             });
 
             //here we handle the btn delete...
-            $(document).on('click', '.delete-btn', function() {
+            $(document).on('click', '.delete_btn_participante', function() {
                 //we obtain the id of the register...
                 var idinscritoTorneo = $(this).data('idinscrito');
                 //AJAX request...
@@ -106,12 +107,13 @@
             });
 
             //function to handle the update btn...
-            $(document).on('click', '.edit-btn', function(){
+            $(document).on('click', '.edit_btn_participantes', function(){
                 //we obtain the id of the register...
                 var idinscritoTorneo = $(this).data('idinscrito');
 
                 //the container of the form to edit information appears...
                 $('#edit_form_participantes').css('display', 'flex');
+
                 //we get the data...
                 $.ajax({
                     type: 'GET',
@@ -119,6 +121,10 @@
                     data: {id: idinscritoTorneo},
                     success: function(response){
                         $('#edit_form_participantes').html(response);
+                        //scroll to the bottom of the page...
+                        $('html, body').animate({
+                            scrollTop: $(document).height() - $(window).height()
+                        }, 300);
                     }, 
                     error: function(error){
                         alert('Error:' + $(error).text());
@@ -186,7 +192,8 @@
             });
 
             //handle the cancel btn of the form...
-            $('body').on('click', '#cancelar_participante_btn', function(){
+            $('body').on('click', '#cancelar_participante_btn', function(event){
+                event.preventDefault();
                 //the container of the form to edit information appears...
                 $('#edit_form_participantes').css('display', 'none');
             })

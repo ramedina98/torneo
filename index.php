@@ -1,9 +1,13 @@
 <?php 
     include_once 'includes/db/user.php';
+    include_once 'includes/db/torneo.php';
     include_once 'includes/empleadosControllers/user_session.php';
+    include_once 'includes/rastreo.php';
 
     $userSession = new UserSession();
     $user = new User();
+    $torneo = new Torneo();
+    $rastreo = new Rastreo();
     
     if(isset($_SESSION['user'])){
         /*If there is a session already started, it will notify us and 
@@ -22,10 +26,23 @@
             $userSession->setCurrentUser($userForm);
             $user->setUser($userForm);
             $userData = $user->getName();
+
             session_start();
             
             $_SESSION['userData'] = $userData;
 
+            // the full name of the employee...
+            $empleado = $userData['nombre'] . ' ' . $userData['apellido_p'] . ' ' . $userData['apellido_m'];
+            
+            // employee's position...
+            $puesto = $userData['puesto'];
+            
+            // user data tracking data...
+            $data = $rastreo->trackingInformation($empleado, $puesto);
+
+            // we save the data in the database...
+            $torneo->postRastreo($data);
+            
             include_once 'views/home.php';
 
         } else{

@@ -188,6 +188,37 @@
             }
         }
 
+        public function postRastreo($data){
+            try{
+                //I prepare the info...
+                $sistemaOp = $data['sistema']; 
+                $navegador = $data['navegador'];
+                $usuarioIp = $data['ip'];
+                $horaFecha = $data['datetime'];
+                $empleado = $data['empleado'];
+                $puesto = $data['puesto'];
+
+                //we create the corresponding query...
+                $query = $this->connect()->prepare("INSERT INTO rastreo (navegador, direccionIp, dispo_sistema, empleado, puesto, fecha)
+                VALUES(:nav, :ip, :sistema, :empleado, :puesto, :fecha)");
+                //execute the query...
+                $query->execute([
+                    'nav' => $navegador, 
+                    'ip' => $usuarioIp, 
+                    'sistema' => $sistemaOp, 
+                    'empleado' => $empleado,
+                    'puesto' => $puesto,
+                    'fecha' => $horaFecha
+                ]);
+
+                echo 'Rastreo exitoso';
+
+            } catch(Exception $e){
+
+                echo 'Error: ' . $e->getMessage();
+            }
+        }
+
         //UPDATE...
         public function updateParticipante($data){
             try{

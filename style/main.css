@@ -36,6 +36,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 #btn_add{
     padding: 0.7em;
@@ -197,5 +199,13 @@
     }
     .form_participantes_add .cont_btns_participantes_form .b{
         width: 100%;
+    }
+}
+
+@media screen and (max-width: 514px){
+    .container_btn_add{
+        #cont_inputSearch{
+            margin-top: 1em;
+        }
     }
 }

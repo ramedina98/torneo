@@ -1,4 +1,3 @@
-<!--this is the code for the connection to the database...-->
 <?php
     //We go through the whole process to use the environment variables
     require __DIR__ . '/../../vendor/autoload.php'; 

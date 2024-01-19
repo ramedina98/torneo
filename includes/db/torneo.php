@@ -54,6 +54,19 @@
                 return null;
             }
         }
+        //a specific center...
+        public function getInstalacion($id){
+            try{
+                $query = $this->connect()->prepare('SELECT * FROM centro WHERE idcentro = :id');
+                $query->execute(['id' => $id]);
+
+                $res = $query->fetch(PDO::FETCH_ASSOC);
+                return $res;
+                
+            } catch(Exception $e){
+                echo 'Error: ' . $e->getMessage();
+            }
+        }
 
         //The following methods are more specific and are totally dedicated to tournaments...
         //tournament participants...

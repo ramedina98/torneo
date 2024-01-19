@@ -14,7 +14,7 @@ const firstCapitalLetter = (chain) => {
 
     return name;
 }
-
+//global variable...
 let previusID = null;
 const highlightBtn = (previusID, currentID) => {
     //we remove the class...
@@ -34,6 +34,14 @@ const loadComponent = (name) => {
         name = 'inicio';
     }
 
+    //here we look for if it is in the required format, if not we continue with the other...
+    const ruta = name.match(/([a-zA-Z]+)(\d+)/);
+    
+    //if this way we extract the two parts...
+    if(ruta){
+        name = ruta[1]; //name of the component...
+    }
+    
     // component path according to id...
     var componentPath = './views/components/' + name + '.php';
 

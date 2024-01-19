@@ -14,6 +14,9 @@
 
   <meta name="description" content="¡Regístrate para participar en los emocionantes torneos deportivos ofrecidos por el Gimnasio NombreDelGimnasio! Encuentra información detallada sobre los eventos, deportes en competición, condiciones de participación y más. ¡Explora nuestro calendario de torneos y únete a la acción deportiva!">
   <meta name="keywords" content="torneos deportivos, registro de torneos, deportes en competición, condiciones de participación, gimnasio, actividades deportivas, calendario de torneos, inscripciones a eventos deportivos">
+  <meta http-equiv="cache-control" content="no-cache"/>
+  <meta name="author" content="Ricardo Abraham Medina Martin Del Campo - Ivan Careaga Panduro" />
+  <meta name="robots" content="index, follow" />
 
   <!-- Favicons -->
   <link href="assets/img/icon.ico" rel="icon">
@@ -304,6 +307,8 @@
   <!--Jquery-->
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script src="./logic/main.js"></script>
+  <!--boxicon-->
+  <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 </body>
 
 </html>

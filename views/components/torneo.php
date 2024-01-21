@@ -10,6 +10,8 @@
     <div class="colum col-md-8 mx-auto mt-5">
         <div class="col-xl-20">
 
+            <button type="button" class="btn btn-secondary" id="btn_regresar" style="margin-bottom: 1em; background-color: rgb(0, 62, 105);">Regresar</button>
+
             <div class="row">
                 <div class="col-lg-6">
                     <div class="info-box card">
@@ -101,5 +103,10 @@
         const id = idCentro();
         dataCenter(id);
         //the end...
+
+        //here i handle the btn back...
+        $('#btn_regresar').on('click', function(){
+            window.history.back();
+        })
     })
 </script>

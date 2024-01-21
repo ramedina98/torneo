@@ -1,7 +1,7 @@
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
-        <h1 class="display-4">CoreFury Gym</h1>
-        <p class="lead">Instalaciones: <span id="gym_name"></span></p>
+        <h1 class="display-4">Centro: <a id="gym" style="text-decoration: none; color: white;"></a></h1>
+        <p class="lead">Torneo: <span id="tournament_name"></span></p>
     </div>
 </div>
 
@@ -13,39 +13,40 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="info-box card">
-                        <i class="bi bi-geo-alt"></i>
-                        <h3>Dirección </h3>
-                        <p id="text_direccion"></p>
+                        <i class="bi bi-calendar-week"></i>
+                        <h3>Fecha</h3>
+                        <p id="date_text"></p>
                     </div>
                 </div>
 
                 <div class="col-lg-6">
                     <div class="info-box card">
-                        <i class="bi bi-telephone"></i>
-                        <h3>Llamanos</h3>
-                        <p id="tel_info"></p>
+                        <i class="bi bi-people-fill"></i>
+                        <h3>Limite</h3>
+                        <p id="limite"></p>
                     </div>
                 </div>
 
                 <div class="col-lg-6">
                     <div class="info-box card">
-                        <i class="bi bi-envelope"></i>
-                        <h3>Email</h3>
-                        <a href="mailto:rmedinamartindelcampo@gmail.com" style="text-decoration: none; color:black;" id="email_text"></a>
+                        <i class="bi bi-shadows"></i>
+                        <h3>Deporte</h3>
+                        <p id="deporte"></p>
                     </div>
                 </div>
 
                 <div class="col-lg-6">
                     <div class="info-box card">
-                        <i class="bi bi-clock"></i>
-                        <h3>Horario</h3>
-                        <p id="horario_text"></p>
+                        <i class="bi bi-building"></i>
+                        <h3>Centro</h3>
+                        <a id="centro" style="text-decoration: none; color: black;"></a>
                     </div>
                 </div>
             </div>
 
         </div>
     </div>
+    
 </div>
 <script>
     $(document).ready(function(){
@@ -70,29 +71,27 @@
         const dataCenter = (id) => {
             //ajax call...
             $.ajax({
-                url: 'includes/torneoControllers/getInstalacion.php',
+                url: 'includes/torneoControllers/getTorneoJson.php',
                 type: 'GET',
                 data: { id: id},
                 dataType: 'json',
                 success: function (data) {
-                    //center name
-                    $('#gym_name').text(data.nombre_centro);
+                    console.log(data);
+                    $('#gym').attr('href', `#centro${data.idcentro}`).text(data.nombre_centro);
+                    //tournament name...
+                    $('#tournament_name').text(data.nombre);
                     
                     //center address...
-                    var direccion = data.calle_centro + ' ' + data.numExt_centro;
-                    var estadoCiudad = data.municipio_centro + ', ' + data.estado_centro;
-                    $('#text_direccion').html(`${direccion}, <br> ${estadoCiudad}`);
+                    $('#date_text').text(data.fechainicio);
 
                     //center number...
-                    $('#tel_info').text(data.telefono);
+                    $('#limite').text(data.limite + ' participantes');
 
                     //center email... 
-                    $('#email_text').text(data.email);
+                    $('#deporte').text(data.nombre_deporte);
 
                     //gym schedule... 
-                    var horas = data.horario;
-                    var days = data.dias_abierto;
-                    $('#horario_text').html(`${days} <br>${horas}`);
+                    $('#centro').attr('href', `#centro${data.idcentro}`).text(data.nombre_centro);
                 },
                 error: function (error) {
                     console.error('Error en la solicitud AJAX:', error);

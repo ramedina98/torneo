@@ -13,7 +13,13 @@
                 <td><?php echo $participante['apellidoP']; ?></td>
                 <td><?php echo $participante['apellidoM']; ?></td>
                 <td><?php echo $participante['nombreEquipo']; ?></td>
-                <td><?php echo $participante['nombreTorneo']; ?></td>
+                <td>
+                    <!--TODO: hay que procesar el nombre del torneo para que no tenga espacios entre
+                    palabras y no posea acentos-->
+                    <a href="#torneo<?php echo $participante['idTorneo']; ?>" class="link_centro">
+                        <?php echo $participante['nombreTorneo']; ?>
+                    </a>
+                </td>
                 <td><?php echo $participante['statusPago']; ?> - $<?php echo $participante['cuota']; ?></td>
                 <td>
                     <button type="button" class="btn btn-success edit_btn_participantes" data-idinscrito="<?php echo $participante['idinscritoTorneo']; ?>">

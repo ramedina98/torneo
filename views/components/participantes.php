@@ -1,7 +1,7 @@
 <div>
     <div class="container_btn_add">
         <a href="#agregar_participante" type="button" class="btn btn-primary" id="btn_add">
-            <i class='bx bxs-plus-circle'></i> 
+        <i class="bi bi-person-fill-add"></i>
         </a>
         <!--input to search by name--> 
         <div class="input-group mb-3" id="cont_inputSearch">
@@ -32,7 +32,7 @@
         </tbody>
     </table>
 
-    <div class="cont_form_add_participantes" id="edit_form_participantes">
+    <div class="cont_form_add_participantes modal" tabindex="-1" id="edit_form_participantes">
 
     </div>
 
@@ -57,36 +57,24 @@
 
             dataParticipantesTable();
 
-            //handle event keyup of the search input...
-            $('#searchInput').keyup(function(){
-                var searchText = $(this).val().toLowerCase();
-
+            //here we search the requiered data in the table...
+            const searchData = (data) => {
                 //filter the table rows...
                 $('.datos_rows').each(function(){
                     var rowData = $(this).text().toLowerCase();
-                    if(rowData.indexOf(searchText) === -1){
+                    if(rowData.indexOf(data) === -1){
                         $(this).hide(); //hide the rows that do not match...
                     } else{
                         $(this).show(); //Show the rows that match...
                     }
                 })
+            }
+            
+            //handle event keyup of the search input...
+            $('#searchInput').keyup(function(){
+                var searchText = $(this).val().toLowerCase();
+                searchData(searchText);
             })
-
-            //here we handle the btn add...
-            $('#btn_add').on({
-                mouseenter: function () {
-                    //Event when hovering over the button...
-                    $(this).fadeOut('normal', function() {
-                        $(this).html('<i class="bx bxs-plus-circle"></i> Añadir un nuevo participante').fadeIn('normal');
-                    });
-                },
-                mouseleave: function () {
-                    //Event whe th cursor is removed from the button...
-                    $(this).fadeOut('normal', function() {
-                        $(this).html('<i class="bx bxs-plus-circle"></i>').fadeIn('normal');
-                    });
-                }, 
-            });
 
             //here we handle the btn delete...
             $(document).on('click', '.delete_btn_participante', function() {
@@ -121,10 +109,6 @@
                     data: {id: idinscritoTorneo},
                     success: function(response){
                         $('#edit_form_participantes').html(response);
-                        //scroll to the bottom of the page...
-                        $('html, body').animate({
-                            scrollTop: $(document).height() - $(window).height()
-                        }, 300);
                     }, 
                     error: function(error){
                         alert('Error:' + $(error).text());

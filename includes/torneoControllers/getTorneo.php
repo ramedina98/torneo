@@ -1,6 +1,6 @@
 <?php 
     /*Here we have the necessary code to show in the inputs the data of the 
-    torneo to be update*/
+    tournament to be update*/
     include_once '../db/torneo.php';
 
     if(isset($_GET['id'])){

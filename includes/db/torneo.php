@@ -57,7 +57,27 @@
         //a specific center...
         public function getInstalacion($id){
             try{
-                $query = $this->connect()->prepare('SELECT * FROM centro WHERE idcentro = :id');
+                $query = $this->connect()->prepare('SELECT 
+                        ic.idinstalacionesCentro, 
+                        c.idcentro,
+                        c.nombre AS nombre_centro,
+                        c.calle AS calle_centro,
+                        c.numExt AS numExt_centro,
+                        c.numInt AS numInt_centro,
+                        c.colonia AS colonia_centro,
+                        c.cp AS cp_centro,
+                        c.municipio AS municipio_centro,
+                        c.estado AS estado_centro,
+                        i.idinstalacion,
+                        i.dias_abierto,
+                        i.horario,
+                        i.telefono,
+                        i.email
+                    FROM instalacionesCentro AS ic
+                    INNER JOIN centro AS c ON ic.centro = c.idcentro
+                    INNER JOIN instalaciones AS i ON ic.instalacion = i.idinstalacion
+                    WHERE c.idcentro = :id');
+                    
                 $query->execute(['id' => $id]);
 
                 $res = $query->fetch(PDO::FETCH_ASSOC);
@@ -80,6 +100,7 @@
                 IT.cuota,
                 IT.statusPago,
                 IT.nombreEquipo,
+                IT.torneo AS idTorneo,
                 T.nombre AS nombreTorneo
             FROM inscritoTorneo AS IT
             JOIN socio AS S ON IT.socio = S.idsocio
@@ -139,7 +160,15 @@
         }
 
         public function getTorneo($id){
-            $query = $this->connect()->prepare('SELECT * FROM torneo WHERE idtorneo = :id');
+            $query = $this->connect()->prepare('SELECT T.idtorneo, T.nombre, T.deporte, T.limite, T.fechainicio, 
+            T.instalacionesCentro, C.idcentro, D.nombre as nombre_deporte, 
+            C.nombre AS nombre_centro
+            FROM torneo AS T
+            JOIN deportes AS D ON T.deporte = D.iddeporte
+            JOIN instalacionesCentro AS I ON T.instalacionesCentro = I.idinstalacionesCentro
+            JOIN centro AS C ON I.centro = C.idcentro
+            WHERE T.idtorneo = :id');
+
             $query->execute(['id' => $id]);
 
             try{

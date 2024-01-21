@@ -31,26 +31,31 @@
         </tbody>
     </table>
 
-    <div class="cont_form_add_participantes" id="edit_form_participantes">
+    <div class="cont_form_add_participantes modal" id="edit_form_participantes">
 
     </div>
 
     <script>
         //this script is to perform the dynamic search with the search input...
         $(document).ready(function(){
-            //handle event keyup of the search input...
-            $('#searchInput').keyup(function(){
-                var searchText = $(this).val().toLowerCase();
-
+            //here we search the requiered data in the table...
+            const searchData = (data) => {
+                console.log('estamos en serach data: ' + data)
                 //filter the table rows...
                 $('.datos_rows').each(function(){
                     var rowData = $(this).text().toLowerCase();
-                    if(rowData.indexOf(searchText) === -1){
+                    if(rowData.indexOf(data) === -1){
                         $(this).hide(); //hide the rows that do not match...
                     } else{
                         $(this).show(); //Show the rows that match...
                     }
                 })
+            }
+
+            //handle event keyup of the search input...
+            $('#searchInput').keyup(function(){
+                var searchText = $(this).val().toLowerCase();
+                searchData(searchText);
             })
 
             //here we handle the information that we choose from the tournament table...
@@ -70,22 +75,6 @@
             }
 
             dataTournamentTable();
-
-            //here we handle the btn add...
-            $('#btn_add').on({
-                mouseenter: function () {
-                    //Event when hovering over the button...
-                    $(this).fadeOut('normal', function() {
-                        $(this).html('<i class="bx bxs-plus-circle"></i> Añadir un nuevo torneo').fadeIn('normal');
-                    });
-                },
-                mouseleave: function () {
-                    //Event whe th cursor is removed from the button...
-                    $(this).fadeOut('normal', function() {
-                        $(this).html('<i class="bx bxs-plus-circle"></i>').fadeIn('normal');
-                    });
-                }, 
-            });
 
             //here we handle the btn delete function...
             $(document).on('click', '.delete_btn_torneo', function() {
@@ -121,10 +110,6 @@
                     data: {id: idinscritoTorneo},
                     success: function(response){
                         $('#edit_form_participantes').html(response);
-                        //scroll to the bottom of the page...
-                        $('html, body').animate({
-                            scrollTop: $(document).height() - $(window).height()
-                        }, 300);
                     }, 
                     error: function(error){
                         alert('Error:' + $(error).text());
@@ -217,7 +202,7 @@
                 event.preventDefault();
                 //the container of the form to edit information appears...
                 $('#edit_form_participantes').css('display', 'none');
-            })
+            });
         })
     </script>
 </div>

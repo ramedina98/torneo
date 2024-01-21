@@ -66,12 +66,12 @@
 
         <!--TODO: creo que esto si estaria chido conservarlo, solo hay que
         encontrarle una funcionalidad real...-->
-        <li class="nav-item dropdown">
+        <!--li class="nav-item dropdown">
 
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-chat-left-text"></i>
             <span class="badge bg-success badge-number">3</span>
-          </a><!-- End Messages Icon -->
+          </a>
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
             <li class="dropdown-header">
@@ -128,9 +128,9 @@
               <a href="#">Show all messages</a>
             </li>
 
-          </ul><!-- End Messages Dropdown Items -->
+          </ul>
 
-        </li><!-- End Messages Nav -->
+        </li-->
 
         <li class="nav-item dropdown pe-3">
 
@@ -183,27 +183,18 @@
               <hr class="dropdown-divider">
             </li>
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+              <a class="dropdown-item d-flex align-items-center" href="#mi_perfil">
                 <i class="bi bi-person"></i>
                 <span>Mi perfil</span>
               </a>
             </li>
+
             <li>
               <hr class="dropdown-divider">
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                <i class="bi bi-gear"></i>
-                <span>Ajustes de la cuenta</span>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+              <a class="dropdown-item d-flex align-items-center" href="#ayuda">
                 <i class="bi bi-question-circle"></i>
                 <span>Ayuda</span>
               </a>
@@ -250,19 +241,6 @@
           <i class="bi bi-dice-2-fill"></i><span>Torneos</span>
         </a>
       </li><!-- End Torneos Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#centros" id="centros">
-          <i class="bi bi-building-fill"></i><span>Centros</span>
-        </a>
-      </li><!-- End Centros Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#deportes" id="deportes">
-          <i class="bi bi-dribbble"></i><span>Deportes</span>
-        </a>
-      </li><!-- End Deportes Nav -->
-
     </ul>
 
   </aside><!-- End Sidebar-->
@@ -289,9 +267,6 @@
       Powered by <a href="https://www.unedl.edu.mx/portal/" target="_blank">UNEDL</a>
     </div>
   </footer><!-- End Footer -->
-
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
   <!-- Vendor JS Files -->
   <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

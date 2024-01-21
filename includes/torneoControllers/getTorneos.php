@@ -8,8 +8,12 @@
         foreach ($torneos as $torneo) {
 ?>
             <tr class="datos_rows">
-                <th scope="row"><?php echo $torneo['idtorneo']; ?></th>
-                <td><?php echo $torneo['nombre_torneo']; ?></td>
+                <th scope="row" class='id'><?php echo $torneo['idtorneo']; ?></th>
+                <td>
+                    <a href="#torneo<?php echo $torneo['idtorneo']; ?>" class="link_centro">
+                        <?php echo $torneo['nombre_torneo']; ?>
+                    </a>
+                </td>
                 <td><?php echo $torneo['nombre_deporte']; ?></td>
                 <td><?php echo $torneo['limite']; ?></td>
                 <td><?php echo $torneo['fechainicio']; ?></td>

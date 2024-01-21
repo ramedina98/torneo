@@ -253,8 +253,6 @@
                     'fecha' => $horaFecha
                 ]);
 
-                echo 'Rastreo exitoso';
-
             } catch(Exception $e){
 
                 echo 'Error: ' . $e->getMessage();

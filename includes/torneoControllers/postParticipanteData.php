@@ -8,6 +8,9 @@
             $data = $_POST['data'];
             $response = $torneo->postParticipante($data);
 
+            /*TODO: hay que enviar un correo al participante, agredeciendole su inscripcion al evento 
+            y demás... template creado por ivan*/
+
             echo 'Mensaje de exito: ' . $response;
         } catch(Exception $e){
             echo 'Mensaje: ' . $e->getMessage();

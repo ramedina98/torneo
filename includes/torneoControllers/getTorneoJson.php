@@ -19,7 +19,9 @@
                     $result['torneo'] = array(
                         'nombre' => $row['nombre'],
                         'limite' => $row['limite'],
+                        'inscritos' => $row['numero_de_inscritos'],
                         'fechainicio' => $row['fechainicio'],
+                        'precio' => $row['precio_torneo'],
                         'idcentro' => $row['idcentro'],
                         'nombre_deporte' => $row['nombre_deporte'],
                         'nombre_centro' => $row['nombre_centro'],

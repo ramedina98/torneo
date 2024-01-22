@@ -22,7 +22,8 @@
                 <th scope="col">Apellido M</th>
                 <th scope="col">N. Equipo</th>
                 <th scope="col">Torneo</th>
-                <th scope="col">Es. Pago</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Adeuda</th>
                 <th scope="col">Acción</th>
             </tr>
         </thead>
@@ -37,29 +38,11 @@
                 <td></td>
                 <td></td>
                 <td></td>
-            </tr>
-            <tr class="table-secondary">
-                <th scope="col"></th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
                 <td></td>
             </tr>
             <tr class="table-secondary">
                 <th scope="col"></th>
                 <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr class="table-secondary">
-                <th scope="col"></th>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -77,15 +60,6 @@
                 <td></td>
                 <td></td>
                 <td></td>
-            </tr>
-            <tr class="table-secondary">
-                <th scope="col"></th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
                 <td></td>
             </tr>
             <tr class="table-secondary">
@@ -97,6 +71,18 @@
                 <td></td>
                 <td></td>
                 <td></td>
+                <td></td>
+            </tr>
+            <tr class="table-secondary">
+                <th scope="col"></th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
             </tr>
             <tr class="table-secondary">
                 <th scope="col"></th>
@@ -107,9 +93,33 @@
                 <td></td>
                 <td></td>
                 <td></td>
+                <td></td>
             </tr>
             <tr class="table-secondary">
                 <th scope="col"></th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="table-secondary">
+                <th scope="col"></th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="table-secondary">
+                <th scope="col"></th>
+                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>

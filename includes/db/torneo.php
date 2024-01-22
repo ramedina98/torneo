@@ -101,7 +101,8 @@
                 IT.statusPago,
                 IT.nombreEquipo,
                 IT.torneo AS idTorneo,
-                T.nombre AS nombreTorneo
+                T.nombre AS nombreTorneo, 
+                T.precio_torneo AS precio
             FROM inscritoTorneo AS IT
             JOIN socio AS S ON IT.socio = S.idsocio
             JOIN torneo AS T ON IT.torneo = T.idtorneo;');
@@ -136,7 +137,10 @@
                 T.idtorneo,
                 T.nombre AS nombre_torneo,
                 D.nombre AS nombre_deporte,
+                T.precio_torneo AS precio,
                 T.limite,
+                T.numero_de_inscritos AS inscritos,
+                T.precio_torneo AS precio,
                 T.fechainicio AS fechainicio,
                 C.nombre AS nombre_centro,
                 C.idcentro
@@ -175,6 +179,7 @@
         
         public function getTorneParticipantes($id){
             $query = $this->connect()->prepare('SELECT T.nombre, T.limite, T.fechainicio, 
+            T.precio_torneo, T.numero_de_inscritos,
             C.idcentro, D.nombre as nombre_deporte, 
             C.nombre AS nombre_centro, 
             IT.nombreEquipo, IT.idinscritoTorneo,
@@ -230,16 +235,18 @@
                 $limite = (int)$data['limite'];
                 $fechainicio = $data['fechainicio'];
                 $instalacionCentro = (int)$data['instalacionesCentro'];
+                $precio = (double)$data['precioTorneo'];
 
                 //send the data...
-                $query = $this->connect()->prepare("INSERT INTO torneo (nombre, deporte, limite, fechainicio, instalacionesCentro)
-                        VALUES(:nombre, :deporte, :limite, :fechainicio, :instalacionCentro)");
+                $query = $this->connect()->prepare("INSERT INTO torneo (nombre, deporte, limite, fechainicio, instalacionesCentro, precio_torneo)
+                        VALUES(:nombre, :deporte, :limite, :fechainicio, :instalacionCentro, :precio)");
                 $query->execute([
                     'nombre' => $nombre,
                     'deporte' => $deporte,
                     'limite' => $limite,
                     'fechainicio' => $fechainicio,
-                    'instalacionCentro' => $instalacionCentro
+                    'instalacionCentro' => $instalacionCentro, 
+                    'precio' => $precio
                 ]);
 
 
@@ -321,13 +328,15 @@
                 $limite = (int)$data['limite'];//maximun number of participants...
                 $fecha = $data['fechainicio'];//event start date and time...
                 $instalacionCentro = (int)$data['instalacionesCentro'];//center id...
+                $precio = (double)$data['precioTorneo'];
 
                 $query = $this->connect()->prepare('UPDATE torneo 
                 SET nombre = :nombre,
                     deporte = :deporte,
                     limite = :limite,
                     fechainicio = :fechainicio,
-                    instalacionesCentro = :instalacionCentro
+                    instalacionesCentro = :instalacionCentro, 
+                    precio_torneo = :precio
                 WHERE idtorneo = :idtorneo');
                 $query->execute([
                     'idtorneo' => $idtorneo,
@@ -335,7 +344,8 @@
                     'deporte' => $deporte,
                     'limite' => $limite,
                     'fechainicio' => $fecha,
-                    'instalacionCentro' => $instalacionCentro
+                    'instalacionCentro' => $instalacionCentro,
+                    'precio' => $precio
                 ]);
 
                 echo 'actualizado con exito';

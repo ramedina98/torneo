@@ -17,33 +17,12 @@
                         <input type="text" class="form-control" id="inputSocio" name="inputSocio" aria-describedby="emailHelp" value="<?= $response['socio'] ?>" placeholder="Agregue el numero de socio">
                         <div id="emailHelp" class="form-text">Nombre: <span id="showName_span"></span> </div>
                     </div>
-                    <div class="mb-3 l">
-                        <label for="inputCuota" class="form-label">Cuota</label>
-                        <input type="text" class="form-control" id="inputCuota" name="inputCuota" aria-describedby="emailHelp" value="<?= $response['cuota'] ?>" placeholder="Agregue pago">
-                    </div>
-                </div>
-
-                <div class="mb-3" id="cont_pago_equipo">
-                    <div class="mb-3 l">
-                        <label for="exampleInputEmail1" class="form-label">Estatus de pago</label>
-                        <select class="form-select" aria-label="Default select example" id="select_Es_pago">
-                            <option <?= $response['statusPago'] == 1 ? 'selected' : '' ?> value="1">1</option>
-                            <option <?= $response['statusPago'] == 0 ? 'selected' : '' ?> value="0">0</option>
-                        </select>
-                        <div id="emailHelp" class="form-text">0 = saldado / 1 = pendiente </div>
-                    </div>
-                    <div class="mb-3 l" id="cont_n_equipo">
-                        <label for="nombreEquipo" class="form-label">Nombre del equipo</label>
-                        <input type="text" class="form-control" id="nombreEquipo" name="nombreEquipo" maxlength="50" aria-describedby="emailHelp" value="<?= $response['nombreEquipo'] ?>" placeholder="Agregue el nombre del equipo">
-                        <!-- This div will contain all the suggestions (team name) -->
-                        <div id="sugerencias"></div>
-                    </div>
 
                     <div class="mb-3 l">
                         <label for="exampleInputPassword1" class="form-label">Torneo</label>
                         <select class="form-select" aria-label="Default select example" id="select_torneo">
                             <?php 
-                                // * This code is to get all the tournament options that are available...
+                                //*this code is to get all the tournament options that are avilable...
                                 include_once '../../includes/db/torneo.php';
                                 $torneo = new Torneo();
 
@@ -52,16 +31,46 @@
 
                                 // Check if the input parameter was received...
                                 if ($data !== null) {
+                                    
                                     // Show the suggestions as HTML elements...
                                     foreach ($data as $dTorneo) {
-                                        // Present the options as select options...
-                                        echo '<option ' . ($response['torneo'] == $dTorneo['idtorneo'] ? 'selected' : '') . ' value="' . htmlspecialchars($dTorneo['idtorneo']) . '">' . htmlspecialchars($dTorneo['nombre_torneo']) . '</option>';
+                                        $limite = $dTorneo['limite'];
+                                        $inscritos = $dTorneo['inscritos'];
+                                        
+                                        //if there is still space, we still let people sign up for this tournament...
+                                        if($limite !== $inscritos){
+                                            // Present the options as select options...
+                                            echo '<option ' . ($response['torneo'] == $dTorneo['idtorneo'] ? 'selected' : '') . ' value="' . htmlspecialchars($dTorneo['idtorneo']) . '">' . htmlspecialchars($dTorneo['nombre_torneo']) . ' - $' . htmlspecialchars($dTorneo['precio']) . '</option>';
+                                        }
                                     }
-                                } else {
+                                } else{
                                     echo '<option value="0">No hay torneos</option>';
                                 }
                             ?>
                         </select>
+                        <div id="emailHelp" class="form-text">Datos del torneo: nombre y precio.</div>
+                    </div>
+                </div>
+
+                <div class="mb-3" id="cont_pago_equipo">
+                    <div class="mb-3 l">
+                        <label for="inputCuota" class="form-label">Cuota</label>
+                        <input type="text" class="form-control" id="inputCuota" name="inputCuota" aria-describedby="emailHelp" value="<?= $response['cuota'] ?>" placeholder="Agregue pago">
+                    </div>
+                    <div class="mb-3 l">
+                        <label for="exampleInputEmail1" class="form-label">Estatus de pago</label>
+                        <select class="form-select" aria-label="Default select example" id="select_Es_pago">
+                            <option <?= $response['statusPago'] == 1 ? 'selected' : '' ?> value="1">1</option>
+                            <option <?= $response['statusPago'] == 0 ? 'selected' : '' ?> value="0">0</option>
+                        </select>
+                        <div id="emailHelp" class="form-text">0 = saldado / 1 = pendiente </div>
+                    </div>
+                    
+                    <div class="mb-3 l" id="cont_n_equipo">
+                        <label for="nombreEquipo" class="form-label">Nombre del equipo</label>
+                        <input type="text" class="form-control" id="nombreEquipo" name="nombreEquipo" maxlength="50" aria-describedby="emailHelp" value="<?= $response['nombreEquipo'] ?>" placeholder="Agregue el nombre del equipo">
+                        <!-- This div will contain all the suggestions (team name) -->
+                        <div id="sugerencias"></div>
                     </div>
                 </div>
 

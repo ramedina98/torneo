@@ -12,12 +12,44 @@
                 <div id="emailHelp" class="form-text">Nombre: <span id="showName_span"></span> </div>
             </div>
             <div class="mb-3 l">
-                <label for="inputCuota" class="form-label">Cuota</label>
-                <input type="text" class="form-control" id="inputCuota" aria-describedby="emailHelp" placeholder="Agregue paga" name="inputCuota">
+                <label for="exampleInputPassword1" class="form-label">Torneo</label>
+                <select class="form-select" aria-label="Default select example" id="select_torneo">
+                    <?php 
+                        //*this code is to get all the tournament options that are avilable...
+                        include_once '../../includes/db/torneo.php';
+                        $torneo = new Torneo();
+
+                        // Get all the data from the corresponding table...
+                        $data = $torneo->getTorneos();
+
+                        // Check if the input parameter was received...
+                        if ($data !== null) {
+                            
+                            // Show the suggestions as HTML elements...
+                            foreach ($data as $dTorneo) {
+                                $limite = $dTorneo['limite'];
+                                $inscritos = $dTorneo['inscritos'];
+                                
+                                //if there is still space, we still let people sign up for this tournament...
+                                if($limite !== $inscritos){
+                                    // Present the options as select options...
+                                    echo '<option value="' . htmlspecialchars($dTorneo['idtorneo']) . '">' . htmlspecialchars($dTorneo['nombre_torneo']) . ' - $' . htmlspecialchars($dTorneo['precio']) . '</option>';
+                                }
+                            }
+                        } else{
+                            echo '<option value="0">No hay torneos</option>';
+                        }
+                    ?>
+                </select>
+                <div id="emailHelp" class="form-text">Datos del torneo: nombre y precio.</div>
             </div>
         </div>
 
         <div class="mb-3" id="cont_pago_equipo">
+            <div class="mb-3 l">
+                <label for="inputCuota" class="form-label">Cuota</label>
+                <input type="text" class="form-control" id="inputCuota" aria-describedby="emailHelp" placeholder="Agregue paga" name="inputCuota">
+            </div>
             <div class="mb-3 l">
                 <label for="exampleInputEmail1" class="form-label">Estatus de pago</label>
                 <select class="form-select" aria-label="Default select example" id="select_Es_pago">
@@ -34,30 +66,11 @@
                 <div id="sugerencias"></div>
             </div>
 
-            <div class="mb-3 l">
-                <label for="exampleInputPassword1" class="form-label">Torneo</label>
-                <select class="form-select" aria-label="Default select example" id="select_torneo">
-                    <?php 
-                        //*this code is to get all the tournament options that are avilable...
-                        include_once '../../includes/db/torneo.php';
-                        $torneo = new Torneo();
-
-                        // Get all the data from the corresponding table...
-                        $data = $torneo->getTorneos();
-
-                        // Check if the input parameter was received...
-                        if ($data !== null) {
-                            
-                            // Show the suggestions as HTML elements...
-                            foreach ($data as $dTorneo) {
-                                // Present the options as select options...
-                                echo '<option value="' . htmlspecialchars($dTorneo['idtorneo']) . '">' . htmlspecialchars($dTorneo['nombre_torneo']) . '</option>';
-                            }
-                        } else{
-                            echo '<option value="0">No hay torneos</option>';
-                        }
-                    ?>
-                </select>
+            <div class="mb-3 l" id="cont_n_equipo">
+                <label for="email" class="form-label">Correo electrónico</label>
+                <input type="email" pattern=".+@example\.com" size="30" required class="form-control" id="email" maxlength="50" name="email" aria-describedby="emailHelp" placeholder="Agregue el @email">
+                <!--this div will contain all the suggestions (team name)-->
+                <div id="sugerencias"></div>
             </div>
         </div>
 
@@ -155,7 +168,8 @@
                         cuota: $('#inputCuota').val(),
                         estatus: $('#select_Es_pago').val(),
                         nombreEquipo: $('#nombreEquipo').val(),
-                        torneo: $('#select_torneo').val()
+                        torneo: $('#select_torneo').val(), 
+                        correo: $('#email').val()
                     }
 
                     //AJAX request...
@@ -177,7 +191,8 @@
             inputs of the add participant form...*/
             const regularExpressions = {
                 onlyNumbers: /^\d+$/,
-                onlyLetters: /^[a-zA-Z]+(?: [a-zA-Z]+)*$/
+                onlyLetters: /^[a-zA-Z]+(?: [a-zA-Z]+)*$/, 
+                emailFormat: /^[^\s@]+@[^\s@]+\.[^\s@]+$/
             }
 
             const validator = (name, value, label) => {
@@ -229,7 +244,7 @@
                     break;
                 }
             }
-            
+            //here we do the validation with a key up event...
             $('form input').on('input', function(event){
                 //obtain the value of the input...
                 var inputValue = $(this).val();
@@ -239,6 +254,32 @@
                 var labelForInput = $('form label[for="' + inputName + '"]');
                 //this function hleps up to make the validation of the corresponding input...
                 validator(inputName, inputValue, labelForInput);
+            });
+
+            const emailValidator = (name, value, label) => {
+                //this input can only accept letters...
+                if(regularExpressions.emailFormat.test(value)){
+                    $(`#${name}`).removeClass('shake');
+                    label.text('Correo electrónico');
+                    label.removeClass('shakeLabel');
+                    $('#agregar_participantes_btn').fadeIn();
+                } else{
+                    $(`#${name}`).addClass('shake');
+                    label.text('Email invalido');
+                    label.addClass('shakeLabel');
+                    $('#agregar_participantes_btn').hide();
+                }
+            }
+            //here we do the validation of the email with a blur event...
+            $('#email').on('blur', function(event){
+                //obtain the value of the input...
+                var inputValue = $(this).val();
+                //obtain the name of the input...
+                var inputName = $(this).attr('name');
+                //obtain the corresponding label of the input...
+                var labelForInput = $('form label[for="' + inputName + '"]');
+                //this function hleps up to make the validation of the corresponding input...
+                emailValidator(inputName, inputValue, labelForInput);
             });
         })
     </script>

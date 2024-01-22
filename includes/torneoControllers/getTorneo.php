@@ -71,6 +71,11 @@
                             ?>
                         </select>
                     </div>
+
+                    <div class="mb-3 l" id="cont_n_equipo">
+                        <label for="inputPrecioTorneo" class="form-label">Precio del torneo</label>
+                        <input type="text" value="<?= $data['precio_torneo'] ?>" placeholder="Ingrese el precio del torneo" class="form-control" id="inputPrecioTorneo" name="inputPrecioTorneo" aria-describedby="emailHelp">
+                    </div>
                 </div>
 
                 <div class="mb-3 cont_btns_participantes_form">
@@ -109,6 +114,20 @@
                                 if(regularExpressions.onlyNumbers.test(value)){
                                     $(`#${name}`).removeClass('shake');
                                     label.text('Limite');
+                                    label.removeClass('shakeLabel');
+                                    $('#agregar_centro_btn').fadeIn();
+                                } else{
+                                    $(`#${name}`).addClass('shake');
+                                    label.text('Solo numeros');
+                                    label.addClass('shakeLabel');
+                                    $('#agregar_centro_btn').hide();
+                                }
+                            break;
+                            case 'inputPrecioTorneo':
+                                //this input can only accept letters...
+                                if(regularExpressions.onlyNumbers.test(value)){
+                                    $(`#${name}`).removeClass('shake');
+                                    label.text('Precio del torneo');
                                     label.removeClass('shakeLabel');
                                     $('#agregar_centro_btn').fadeIn();
                                 } else{

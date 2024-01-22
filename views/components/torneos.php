@@ -20,6 +20,8 @@
                 <th scope="col">Nombre</th>
                 <th scope="col">Deporte</th>
                 <th scope="col">Limite</th>
+                <th scope="col">Inscritos</th>
+                <th scope="col">Precio</th>
                 <th scope="col">Inicio</th>
                 <th scope="col">Centro</th>
                 <th scope="col">Acción</th>
@@ -35,13 +37,6 @@
                 <td></td>
                 <td></td>
                 <td></td>
-            </tr>
-            <tr class="table-secondary">
-                <th scope="col"></th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
                 <td></td>
                 <td></td>
             </tr>
@@ -49,13 +44,6 @@
                 <th scope="col"></th>
                 <td></td>
                 <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr class="table-secondary">
-                <th scope="col"></th>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -71,8 +59,13 @@
                 <td></td>
                 <td></td>
                 <td></td>
-            </tr><tr class="table-secondary">
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="table-secondary">
                 <th scope="col"></th>
+                <td></td>
+                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -88,6 +81,19 @@
                 <td></td>
                 <td></td>
                 <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="table-secondary">
+                <th scope="col"></th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
             </tr>
             <tr class="table-secondary">
                 <th scope="col"></th>
@@ -97,9 +103,24 @@
                 <td></td>
                 <td></td>
                 <td></td>
+                <td></td>
+                <td></td>
             </tr>
             <tr class="table-secondary">
                 <th scope="col"></th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="table-secondary">
+                <th scope="col"></th>
+                <td></td>
+                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -253,7 +274,8 @@
                         deporte: $('#select_deporte').val(),
                         limite: $('#inputLimite').val(),
                         fechainicio: date, 
-                        instalacionesCentro: $('#select_centro').val()
+                        instalacionesCentro: $('#select_centro').val(),
+                        precioTorneo: $('#inputPrecioTorneo').val()
                     }
 
                     //AJAX request...

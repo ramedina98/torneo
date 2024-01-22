@@ -28,6 +28,14 @@
 
                 <div class="col-lg-6">
                     <div class="info-box card">
+                        <i class="bi bi-person-arms-up"></i>
+                        <h3>Inscritos</h3>
+                        <p id="inscritos"></p>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="info-box card">
                         <i class="bi bi-shadows"></i>
                         <h3>Deporte</h3>
                         <p id="deporte"></p>
@@ -39,6 +47,14 @@
                         <i class="bi bi-building"></i>
                         <h3>Centro</h3>
                         <a id="centro" style="text-decoration: none; color: black;"></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="info-box card">
+                        <i class="bi bi-cash-coin"></i>
+                        <h3>Precio</h3>
+                        <p id="precio"></p>
                     </div>
                 </div>
             </div>
@@ -173,6 +189,7 @@
                 data: { id: id},
                 dataType: 'json',
                 success: function (data) {
+                    console.log('Datos', data.torneo)
                     $('#table_body_participantes_torneo .skeleton_tr').hide();
                     //center name...
                     $('#gym').attr('href', `#centro${data.torneo.idcentro}`).text(data.torneo.nombre_centro);
@@ -185,11 +202,17 @@
                     //center number...
                     $('#limite').text(data.torneo.limite + ' participantes');
 
+                    //
+                    $('#inscritos').text(data.torneo.inscritos + ' inscrios');
+
                     //center email... 
                     $('#deporte').text(data.torneo.nombre_deporte);
 
                     //gym schedule... 
                     $('#centro').attr('href', `#centro${data.torneo.idcentro}`).text(data.torneo.nombre_centro);
+
+                    //tournament price...
+                    $('#precio').text('$' + data.torneo.precio)
 
                     //print table data...
                     printTableData(data);

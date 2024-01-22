@@ -14,8 +14,6 @@
                 <td><?php echo $participante['apellidoM']; ?></td>
                 <td><?php echo $participante['nombreEquipo']; ?></td>
                 <td>
-                    <!--TODO: hay que procesar el nombre del torneo para que no tenga espacios entre
-                    palabras y no posea acentos-->
                     <a href="#torneo<?php echo $participante['idTorneo']; ?>" class="link_centro">
                         <?php echo $participante['nombreTorneo']; ?>
                     </a>

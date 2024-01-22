@@ -6,12 +6,9 @@
 </div>
 
 <div class="section contact">
-
-    <div class="colum col-md-8 mx-auto mt-5">
-        <div class="col-xl-20">
-
-            <button type="button" class="btn btn-secondary" id="btn_regresar" style="margin-bottom: 1em; background-color: rgb(0, 62, 105);">Regresar</button>
-
+    <button type="button" class="btn btn-secondary" id="btn_regresar" style="margin-bottom: 1em; background-color: rgb(0, 62, 105);">Regresar</button>
+    <div class="row gy-4">
+        <div class="col-xl-5">
             <div class="row">
                 <div class="col-lg-6">
                     <div class="info-box card">
@@ -47,13 +44,64 @@
             </div>
 
         </div>
+        
+        <div class="col-xl-7">
+            <div class="card p-4" id="cont_table_participants">
+                <h3 style="border-bottom:1px solid black; color:rgb(0, 62, 105); margin-bottom: 1em;">Participantes</h3>
+                <table class="table table-ligth table-striped">
+                    <thead class="datos_rows">
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">A. Paterno</th>
+                            <th scope="col">A. Materno</th>
+                            <th scope="col">N. Equipo</th>
+                            <th scope="col">Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table_body_participantes_torneo">
+                        <tr class="table-secondary skeleton_tr">
+                            <th scope="col"></th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr class="table-secondary skeleton_tr">
+                            <th scope="col"></th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr class="table-secondary skeleton_tr">
+                            <th scope="col"></th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr class="table-secondary skeleton_tr">
+                            <th scope="col"></th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-    
 </div>
 <script>
     $(document).ready(function(){
         //with this function we obtain the id of the url...
-        const idCentro = () => {
+        const idTournament = () => {
             let id = ''; //variable...
 
             //we get what is after the #
@@ -69,8 +117,55 @@
 
             return id;
         }
-        //
-        const dataCenter = (id) => {
+        //print table data...
+        const printTableData = (data) => {
+            //we have to insert the participants in the table...
+            const participantesTableBody = $('#table_body_participantes_torneo');
+            // check if there are participants or not
+            if (data.torneo.participantes && data.torneo.participantes.length > 0) {
+                // iterate over the participants and add rows to the table...
+                data.torneo.participantes.forEach((participante, index) => {
+                    //if the value is diferent from null...
+                    if(participante.nombre_socio !== null && 
+                    participante.apellido_paterno !== null &&
+                    participante.apellido_materno !== null){
+                        const rowHtml = `
+                        <tr class="datos_rows">
+                            <th scope="row">${index + 1}</th>
+                            <td>${participante.nombre_socio}</td>
+                            <td>${participante.apellido_paterno}</td>
+                            <td>${participante.apellido_materno}</td>
+                            <td>${participante.equipo}</td>
+                            <td>
+                                <button type="button" class="btn btn-danger delete_btn_participante_vista_torneo" data-idinscrito="${participante.idregistro}">
+                                    <i class='bx bxs-x-circle'></i>
+                                </button>
+                            </td>
+                        </tr>
+                        `;
+                        participantesTableBody.append(rowHtml);
+                    } else{ //if the value is null...
+                        const noDataHtml = `
+                            <tr>
+                                <td colspan="4">No hay participantes en este torneo.</td>
+                            </tr>
+                        `;
+                        participantesTableBody.append(noDataHtml);
+                    }
+                });
+            } else {
+                //If there are not participants we print a message in the table...
+                const noDataHtml = `
+                    <tr>
+                        <td colspan="4">No hay participantes en este torneo.</td>
+                    </tr>
+                `;
+                participantesTableBody.append(noDataHtml);
+            }
+        }
+        //data of the tournament
+        const dataTournament = (id) => {
+            $('#table_body_participantes_torneo .skeleton_tr').show();
             //ajax call...
             $.ajax({
                 url: 'includes/torneoControllers/getTorneoJson.php',
@@ -78,35 +173,59 @@
                 data: { id: id},
                 dataType: 'json',
                 success: function (data) {
-                    console.log(data);
-                    $('#gym').attr('href', `#centro${data.idcentro}`).text(data.nombre_centro);
+                    $('#table_body_participantes_torneo .skeleton_tr').hide();
+                    //center name...
+                    $('#gym').attr('href', `#centro${data.torneo.idcentro}`).text(data.torneo.nombre_centro);
                     //tournament name...
-                    $('#tournament_name').text(data.nombre);
+                    $('#tournament_name').text(data.torneo.nombre);
                     
                     //center address...
-                    $('#date_text').text(data.fechainicio);
+                    $('#date_text').text(data.torneo.fechainicio);
 
                     //center number...
-                    $('#limite').text(data.limite + ' participantes');
+                    $('#limite').text(data.torneo.limite + ' participantes');
 
                     //center email... 
-                    $('#deporte').text(data.nombre_deporte);
+                    $('#deporte').text(data.torneo.nombre_deporte);
 
                     //gym schedule... 
-                    $('#centro').attr('href', `#centro${data.idcentro}`).text(data.nombre_centro);
+                    $('#centro').attr('href', `#centro${data.torneo.idcentro}`).text(data.torneo.nombre_centro);
+
+                    //print table data...
+                    printTableData(data);
                 },
                 error: function (error) {
                     console.error('Error en la solicitud AJAX:', error);
                 }
             });
         }
-        const id = idCentro();
-        dataCenter(id);
+        const id = idTournament();
+        dataTournament(id);
         //the end...
 
         //here i handle the btn back...
         $('#btn_regresar').on('click', function(){
             window.history.back();
         })
-    })
+
+        //here we handle the btn delete...
+        $(document).on('click', '.delete_btn_participante_vista_torneo', function() {
+                //we obtain the id of the register...
+                var idinscritoTorneo = $(this).data('idinscrito');
+                //AJAX request...
+                $.ajax({
+                    type: 'POST',
+                    url: 'includes/torneoControllers/deleteParticipante.php',
+                    data: {id: idinscritoTorneo},
+                    success: function(response){
+                        $('#table_body_participantes_torneo').empty();
+                        const id = idTournament();
+                        dataTournament(id);
+                    }, 
+                    error: function(error){
+                        alert('Error:' + $(error).text());
+                    }
+                });
+            });
+        })
 </script>

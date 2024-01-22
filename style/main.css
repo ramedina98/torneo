@@ -55,6 +55,8 @@
 .datos_rows td, 
 .datos_rows th{
     color: rgb(0, 62, 105);
+    text-align: center;
+    vertical-align: middle;
 }
 .link_centro{
     color: rgb(0, 62, 105);
@@ -187,12 +189,35 @@
         transform: translateX(5px);
     }
 }
+#cont_table_participants{
+    max-height: 450px;
+    overflow-y: auto;
+}
 #edit_form_participantes{
     display: none;
     background-color: rgba(0, 0, 0, 0.208);
     & form{
         background-color: white;
     }
+}
+/*skeleton*/
+#table_body_participantes_torneo .skeleton_tr{
+    display: none;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    padding: 2em 0;
+}
+@keyframes shimmer {
+    to {
+        background-position: -200% 0;
+    }
+}
+
+#table_body_participantes_torneo .skeleton_tr th,
+#table_body_participantes_torneo .skeleton_tr td {
+    height: 20px; 
+    margin: 5px 0; 
 }
 
 /*centro component...*/

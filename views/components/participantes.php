@@ -27,8 +27,97 @@
             </tr>
         </thead>
 
-        <tbody class="table-group-divider">
-            
+        <tbody class="table-group-divider" id="tbody_participantes">
+            <tr class="table-secondary">
+                <th scope="col"></th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="table-secondary">
+                <th scope="col"></th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="table-secondary">
+                <th scope="col"></th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="table-secondary">
+                <th scope="col"></th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="table-secondary">
+                <th scope="col"></th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="table-secondary">
+                <th scope="col"></th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="table-secondary">
+                <th scope="col"></th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="table-secondary">
+                <th scope="col"></th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="table-secondary">
+                <th scope="col"></th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
         </tbody>
     </table>
 
@@ -41,11 +130,13 @@
         $(document).ready(function(){
             //handle the load of the data in the table...
             function dataParticipantesTable() {
+                $('#tbody_participantes tr').show();
                 // Perform a new AJAX request to fetch the updated data for the table
                 $.ajax({
                     type: 'GET', // Assuming you have a separate PHP file to fetch the table data
                     url: 'includes/torneoControllers/getParticipantes.php', // Change this to the actual URL
                     success: function(data){
+                        $('#tbody_participantes tr').hide();
                         // Assuming 'data' is the HTML content for the updated table
                         $('.table-group-divider').html(data);
                     },

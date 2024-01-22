@@ -158,21 +158,41 @@
                 return null;
             }
         }
-
+        
         public function getTorneo($id){
-            $query = $this->connect()->prepare('SELECT T.idtorneo, T.nombre, T.deporte, T.limite, T.fechainicio, 
-            T.instalacionesCentro, C.idcentro, D.nombre as nombre_deporte, 
-            C.nombre AS nombre_centro
-            FROM torneo AS T
-            JOIN deportes AS D ON T.deporte = D.iddeporte
-            JOIN instalacionesCentro AS I ON T.instalacionesCentro = I.idinstalacionesCentro
-            JOIN centro AS C ON I.centro = C.idcentro
-            WHERE T.idtorneo = :id');
+            $query = $this->connect()->prepare('SELECT * FROM torneo WHERE idtorneo = :id');
 
             $query->execute(['id' => $id]);
 
             try{
                 $res = $query->fetch(PDO::FETCH_ASSOC);
+                return $res;
+            } catch(PDOException $e){
+                echo 'Error al ejecutar la consulta' .$e->getMessage();
+                return null;
+            }
+        }
+        
+        public function getTorneParticipantes($id){
+            $query = $this->connect()->prepare('SELECT T.nombre, T.limite, T.fechainicio, 
+            C.idcentro, D.nombre as nombre_deporte, 
+            C.nombre AS nombre_centro, 
+            IT.nombreEquipo, IT.idinscritoTorneo,
+            S.nombre AS nombre_socio, S.apellidoP AS apellido_paterno, 
+            S.apellidoM AS apellido_materno, 
+            S.idsocio
+            FROM torneo AS T
+            JOIN deportes AS D ON T.deporte = D.iddeporte
+            JOIN instalacionesCentro AS I ON T.instalacionesCentro = I.idinstalacionesCentro
+            JOIN centro AS C ON I.centro = C.idcentro
+            LEFT JOIN inscritoTorneo AS IT ON T.idtorneo = IT.torneo
+            LEFT JOIN socio AS S ON IT.socio = S.idsocio
+            WHERE T.idtorneo = :id');
+
+            $query->execute(['id' => $id]);
+
+            try{
+                $res = $query->fetchAll(PDO::FETCH_ASSOC);
                 return $res;
             } catch(PDOException $e){
                 echo 'Error al ejecutar la consulta' .$e->getMessage();

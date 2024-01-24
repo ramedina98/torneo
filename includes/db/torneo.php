@@ -9,9 +9,6 @@
 
         //GET
 
-        /*The next methods are the first one since they willl be basic to put
-        them in the selects or to compare if the partner exisits in the 
-        database to be able to participate in the tournaments...*/
         //sports...
         public function getDeportes(){
             $query = $this->connect()->prepare('SELECT * FROM deportes');
@@ -25,6 +22,7 @@
                 return null; 
             }
         }
+
         //partners...
         public function getSocios(){
             $query = $this->connect()->prepare('SELECT * FROM socio');
@@ -51,7 +49,8 @@
                 echo 'Error: ' . $e->getMessage();
             }
         }
-        //centros...
+
+        //centers...
         public function getCentro(){
             $query = $this->connect()->prepare('SELECT ic.idinstalacionesCentro, ic.instalacion, c.nombre AS nombre_centro
             FROM instalacionesCentro AS ic
@@ -67,6 +66,7 @@
                 return null;
             }
         }
+        
         //a specific center...
         public function getInstalacion($id){
             try{
@@ -176,6 +176,7 @@
             }
         }
         
+        //get an specific tournament...
         public function getTorneo($id){
             $query = $this->connect()->prepare('SELECT * FROM torneo WHERE idtorneo = :id');
 
@@ -190,6 +191,7 @@
             }
         }
         
+        /*need to obtain the information of a specific tournament and the participants that are in it...*/
         public function getTorneParticipantes($id){
             $query = $this->connect()->prepare('SELECT T.nombre, T.limite, T.fechainicio, 
             T.precio_torneo, T.numero_de_inscritos,
@@ -229,19 +231,25 @@
 
         getRegistroInfo() = getRegistrationData();
         */
-        public function getRegistroInfo($id){
+        public function getRegistroInfo($ids){
+            $idSocio = $ids['idSocio'];
+            $idTorneo = $ids['idTorneo'];
+
             try{
                 $query = $this->connect()->prepare('SELECT S.nombre, S.apellidoP, S.apellidoM,
                 T.nombre AS nombre_torneo, T.fechainicio AS fecha,
                 C.nombre AS nombre_centro
                 FROM socio AS S
-                JOIN inscritoTorneo AS IT ON S.idsocio = IT.socio
+                JOIN inscritoTorneo AS IT ON S.idsocio = IT.socio AND IT.torneo = :idtorneo
                 JOIN torneo AS T ON IT.torneo = T.idtorneo
                 JOIN instalacionesCentro AS IC ON T.instalacionesCentro = IC.idinstalacionesCentro
                 JOIN centro AS C ON IC.centro = C.idcentro
                 WHERE S.idsocio = :id');
 
-                $query->execute(['id' => $id]);
+                $query->execute([
+                    'id' => $idSocio,
+                    'idtorneo' => $idTorneo
+                ]);
 
                 $res = $query->fetch(PDO::FETCH_ASSOC);
                 return $res;
@@ -252,6 +260,7 @@
         }
 
         //POST...
+        //registration of a new participant...
         public function postParticipante($data){
             try{
                 //we prepare the data obtained by the form...
@@ -273,6 +282,7 @@
             }
         }
 
+        //registration of a new tournament...
         public function postTorneo($data){
             try{
                 //we prepare the data obtained by the form...
@@ -303,6 +313,8 @@
             }
         }
 
+        //account login tracking
+        /*who, on what device (OS), browser and location logged in...*/
         public function postRastreo($data){
             try{
                 //I prepare the info...

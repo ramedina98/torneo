@@ -30,7 +30,8 @@ Your contributions and feedback are welcome as we work to improve and complete a
 
 ## Dependencies
 
-External Libraries (CDN)
+**External Libraries (CDN)**
+
 This project utilizes the following external libraries through CDN. Make sure to include them in your development environment:
 
 **Bootstrap (5.2.3)**

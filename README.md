@@ -30,8 +30,8 @@ Your contributions and feedback are welcome as we work to improve and complete a
 
 ## Dependencies
 
-Bibliotecas Externas (CDN)
-Este proyecto utiliza las siguientes bibliotecas externas a través de CDN. Asegúrate de incluirlas en tu entorno de desarrollo:
+External Libraries (CDN)
+This project utilizes the following external libraries through CDN. Make sure to include them in your development environment:
 
 **Bootstrap (5.2.3)**
 

@@ -200,6 +200,20 @@
         background-color: white;
     }
 }
+/*modal loading add participants*/
+#modal_loading{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.057);
+    & .card{
+        width: clamp(310px, 90%, 450px);
+        height: 450px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
 /*skeleton*/
 #table_body_participantes_torneo .skeleton_tr{
     display: none;

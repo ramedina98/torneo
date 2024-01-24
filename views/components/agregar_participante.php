@@ -68,7 +68,7 @@
 
             <div class="mb-3 l" id="cont_n_equipo">
                 <label for="email" class="form-label">Correo electrónico</label>
-                <input type="email" pattern=".+@example\.com" size="30" required class="form-control" id="email" maxlength="50" name="email" aria-describedby="emailHelp" placeholder="Agregue el @email">
+                <input type="email" size="30" required class="form-control" id="email" maxlength="50" name="email" aria-describedby="emailHelp" placeholder="Agregue el @email">
                 <!--this div will contain all the suggestions (team name)-->
                 <div id="sugerencias"></div>
             </div>
@@ -79,6 +79,17 @@
             <a href="#participantes" class="btn btn-danger b">Cancelar</a>
         </div>
     </form>
+
+    <!--modal loading-->
+    <div class="modal" tabindex="-1" id="modal_loading">
+        <div class="card">
+            <h3 style="margin-bottom: 1.5em;">Agregando al participante</h3>
+            <div class="spinner-border text-success"" style="width: 15rem; height: 15rem;" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    </div>
+
     <script>
         $(document).ready(function(){
             /*here we handle the partner verification with the partnet id,
@@ -162,6 +173,7 @@
                 });
                 
                 if(!emptyInputs){
+                    $('#modal_loading').css('display', 'flex');
                     //creamos un array...
                     const data = {
                         idsocio: $('#inputSocio').val(),
@@ -180,6 +192,10 @@
                     success: function(response){
                         //return to participantes component...
                         window.location.hash = 'participantes';
+                    }, 
+                    error: function(error){
+                        $('#modal_loading').css('display', 'none');
+                        alert('Error: ', error);
                     }
                 })
                 } else {
@@ -240,7 +256,7 @@
                         }
                     break;
                     default:
-                        console.log('There is any problem');
+                        //
                     break;
                 }
             }

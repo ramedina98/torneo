@@ -25,7 +25,7 @@
                 return null; 
             }
         }
-        //partner...
+        //partners...
         public function getSocios(){
             $query = $this->connect()->prepare('SELECT * FROM socio');
             $query->execute();
@@ -36,6 +36,19 @@
             } catch(PDOException $e){
                 echo 'Error al ejecutar la consulta' .$e->getMessage();
                 return null;
+            }
+        }
+
+        //partner...
+        public function getSocio($id){
+            try{
+                $query = $this->connect()->prepare('SELECT nombre, apellidoP, apellidoM FROM socio WHERE idsocio = :id');
+                $query->execute(['id' => $id]);
+
+                $res = $query->fetch(PDO::FETCH_ASSOC);
+                return $res;
+            } catch(Exception $e){
+                echo 'Error: ' . $e->getMessage();
             }
         }
         //centros...
@@ -202,6 +215,39 @@
             } catch(PDOException $e){
                 echo 'Error al ejecutar la consulta' .$e->getMessage();
                 return null;
+            }
+        }
+
+        /*in this function, we retrive specific information required to send an email expressing
+        gratitude to the partnert for registering in the tournament that she/he chose...
+        
+        we need: 
+        1. Name and surname.
+        2. tournament name. 
+        3. tournamen date. 
+        4. name of the center where the tournament will be held.
+
+        getRegistroInfo() = getRegistrationData();
+        */
+        public function getRegistroInfo($id){
+            try{
+                $query = $this->connect()->prepare('SELECT S.nombre, S.apellidoP, S.apellidoM,
+                T.nombre AS nombre_torneo, T.fechainicio AS fecha,
+                C.nombre AS nombre_centro
+                FROM socio AS S
+                JOIN inscritoTorneo AS IT ON S.idsocio = IT.socio
+                JOIN torneo AS T ON IT.torneo = T.idtorneo
+                JOIN instalacionesCentro AS IC ON T.instalacionesCentro = IC.idinstalacionesCentro
+                JOIN centro AS C ON IC.centro = C.idcentro
+                WHERE S.idsocio = :id');
+
+                $query->execute(['id' => $id]);
+
+                $res = $query->fetch(PDO::FETCH_ASSOC);
+                return $res;
+
+            } catch(Exception $e){
+                echo 'Error: ' . $e->getMessage();
             }
         }
 

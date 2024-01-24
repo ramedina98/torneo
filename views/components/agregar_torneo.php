@@ -208,7 +208,7 @@
                         }
                     break;
                     default:
-                        console.log('There is any problem');
+                       //
                     break;
                 }
             }

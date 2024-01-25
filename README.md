@@ -36,22 +36,13 @@
 <details>
   <summary>Table of Contents</summary>
   <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
+    <li><a href="#about-the-project">About The Project</a></li>
+    <li><a href="#project-status">Project status</a></li>
+    <li><a href="#tech-stack">Tech Stack</a></li>
+    <li><a href="#prerequisites">Prerequisites</a></li>
+    <li><a href="#external-libraries-(cdn)">External Libraries (CDN)</a></li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
@@ -93,8 +84,8 @@ Client:
 
 * [![JQuery][JQuery.com]][JQuery-url]
 * [![JavaScript][JS.com]][JavaScript-url]
-* CSS
-* HTML
+* [![Css][CSS.com]][CSS-url]
+* [![HTML][HTML.com]][HTML-url]
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url]
 
 Server: 
@@ -255,9 +246,9 @@ Similar to the 'Participants' view, here in 'Tournaments', we can also visualize
 - [x] Log out
 - [x] Platform View
     - [x] Participants
-        -[x] Add participant view
-        -[x] Update participant buttom
-        -[x] Delate participant buttom
+        - [x] Add participant view
+        - [x] Update participant buttom
+        - [x] Delate participant buttom
     - [x] Tournaments
         - [x] Add tournament view
         - [x] Update tournament buttom
@@ -279,10 +270,18 @@ Project sponsored by `Universidad Enrique Diaz de Leon`
 
 Ricardo Abraham Medina Martin del Campo - [@instagram](https://www.instagram.com/richard_b_stone/?hl=es-la)
 
-My email - [rmedinamartindelcampo[at]gmail[dot]com](mailto:rmedinamartindelcampo@gmail.com)
+[![GMAIL][GMAIL.com]][GMAIL-url] - [rmedinamartindelcampo@gmail.com](mailto:rmedinamartindelcampo@gmail.com)
+
+Ivan Careaga Panduro - [@instagram](https://www.instagram.com/ivanpanduro?igsh=MWlkeDFhcDU0NTZoNA==)
+
+[![GMAIL][GMAIL.com]][GMAIL-url] - [ivanpanduro1@gmail.com](mailto:ivanpanduro1@gmail.com)
+
+[![gitHub][gitHub.com]][gitHub-url] - [Ivan GitHub](https://github.com/ivanpanduro)
+
+
 
 <!--TODO: cambiar esto cuando el link este listo-->
-CoreFury Gym: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+CoreFury Gym: [Link to Web](https://github.com/your_username/repo_name)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -328,11 +327,23 @@ Use this space to list resources you find helpful and would like to give credit 
 [JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
 [JQuery-url]: https://jquery.com 
 
-[PHP.com]:http://poser.pugx.org/phpunit/phpunit/require/php
+[PHP.com]:https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white
 [PHP-url]:https://PHP.com
 
-[MySql.com]:https://shields.io/badge/MySQL-lightgrey?logo=mysql&style=plastic&logoColor=white&labelColor=blue
+[MySql.com]:https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white
 [MysQl-url]:https://MySql.com
 
-[JS.com]:https://shields.io/badge/JavaScript-F7DF1E?logo=JavaScript&logoColor=000&style=flat-square
+[JS.com]:	https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E
 [JavaScript-url]:https://JS.com
+
+[CSS.com]:https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white
+[CSS-url]:https://CSS.com
+
+[HTML.com]: https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white
+[HTML-url]:https://HTML.com
+
+[GMAIL.com]:https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white
+[GMAIL-url]:https://GMAIL.com
+
+[gitHub.com]:https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white
+[gitHub-url]:https://gitHub.com

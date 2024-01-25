@@ -1,13 +1,6 @@
 <a name="readme-top"></a>
 
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
-
-
 
 <!-- PROJECT LOGO -->
 <br />
@@ -32,7 +25,6 @@
 
 
 <!-- TABLE OF CONTENTS -->
-<!--TODO: acomodar esto ya al final-->
 <details>
   <summary>Table of Contents</summary>
   <ol>
@@ -40,7 +32,7 @@
     <li><a href="#project-status">Project status</a></li>
     <li><a href="#tech-stack">Tech Stack</a></li>
     <li><a href="#prerequisites">Prerequisites</a></li>
-    <li><a href="#external-libraries-(cdn)">External Libraries (CDN)</a></li>
+    <li><a href="#external-libraries">External Libraries</a></li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#license">License</a></li>
@@ -115,7 +107,7 @@ composer require vlucas/phpdotenv:^5.6 phpmailer/phpmailer:^6.9
 
 Likewise, it is required to have a server such as XAMPP, Wamp, or another that can assist in visualizing the project.
 
-## External Libraries (CDN)
+## External Libraries
 
 This project utilizes the following external libraries through CDN. Make sure to include them in your development environment:
 
@@ -290,14 +282,9 @@ CoreFury Gym: [Link to Web](https://github.com/your_username/repo_name)
 
 Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
 
-* [Choose an Open Source License](https://choosealicense.com)
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Malven's Flexbox Cheatsheet](https://flexbox.malven.co/)
-* [Malven's Grid Cheatsheet](https://grid.malven.co/)
-* [Img Shields](https://shields.io)
-* [GitHub Pages](https://pages.github.com)
-* [Font Awesome](https://fontawesome.com)
-* [React Icons](https://react-icons.github.io/react-icons/search)
+* [GitHub PHPMailer](https://github.com/PHPMailer/PHPMailer)
+* [Bootstrap Icons](https://icons.getbootstrap.com/)
+* [Boxicon](https://boxicons.com/?query=)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -305,18 +292,6 @@ Use this space to list resources you find helpful and would like to give credit 
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
-[contributors-url]: https://github.com/ramedina98/torneo/graphs/contributors
-
-[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
-[forks-url]: https://github.com/ramedina98/torneo/forks
-
-[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
-[stars-url]: https://github.com/ramedina98/torneo/stargazers
-
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
-[issues-url]: https://github.com/ramedina98/torneo/issues
-
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/ricardo-abraham-medina-marti-del-campo-8baa7827a/
 

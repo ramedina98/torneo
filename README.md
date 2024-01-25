@@ -71,7 +71,7 @@ This project focuses on the development of a new platform designed for the effic
 
 In addition to implementing the login system, a module dedicated to "Tournaments and Participants" has been created. This module manages the various tournaments offered by the gym, allowing employees not only to administer tournament information but also to register participants. It goes beyond registration, providing the capability to edit and delete data of the registered participants.
 
-The development of this platform has been carried out using an SQL database [![MySQL][MySql.com]][MysQl-url] to store information in a structured manner. The set of technologies used includes [![PHP][PHP.com]][PHP-url] for server-side logic, [![JQuery][JQuery.com]][JQuery-url] to enhance interactivity, and [![Bootstrap][Bootstrap.com]][Bootstrap-url] styles for a modern and responsive user interface.
+The development of this platform has been carried out using an SQL database **MySql** to store information in a structured manner. The set of technologies used includes **PHP** for server-side logic, **Jquery** to enhance interactivity, and **Bootstrap** styles for a modern and responsive user interface.
 
 This project not only simplifies the daily operations of gym staff but also enhances the overall user experience by providing easy and efficient access to the services offered by the university gym.
 
@@ -93,8 +93,8 @@ Client:
 
 * [![JQuery][JQuery.com]][JQuery-url]
 * [![JavaScript][JS.com]][JavaScript-url]
-* [![CSS][css.com]][css-url]
-* [![HTML][html.com]][html-url]
+* CSS
+* HTML
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url]
 
 Server: 
@@ -107,7 +107,7 @@ DataBase:
 
 Dependency manager: 
 
-* [![Composer][Composer.com]][Composer-url]
+* Composer
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -243,17 +243,6 @@ Similar to the 'Participants' view, here in 'Tournaments', we can also visualize
 
 :notebook: If the tournament is already full of participants, it will be marked in red in the table and in the tournament options, in the "add participant" view, this option will no longer appear.
 
-<!--TODO: ver si elimino esto o no-->
-
-| Tournament Name | Status    | Actions             |
-| --------------- | --------- | -------------------- |
-| Tournament A     | Full      | :x: Add Participant  |
-| Tournament B     | Available | :heavy_plus_sign:    |
-| Tournament C     | Full      | :x: Add Participant  |
-
-> :x: The option to add participants is disabled for full tournaments.
-> :heavy_plus_sign: You can add participants to Tournament B.
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -289,14 +278,13 @@ Project sponsored by `Universidad Enrique Diaz de Leon`
 ## Contact
 
 Ricardo Abraham Medina Martin del Campo - [@instagram](https://www.instagram.com/richard_b_stone/?hl=es-la)
+
 My email - [rmedinamartindelcampo[at]gmail[dot]com](mailto:rmedinamartindelcampo@gmail.com)
 
 <!--TODO: cambiar esto cuando el link este listo-->
 CoreFury Gym: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
@@ -340,20 +328,11 @@ Use this space to list resources you find helpful and would like to give credit 
 [JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
 [JQuery-url]: https://jquery.com 
 
-[PHP.com]:https://www.freepnglogos.com/uploads/logo-php-png/php-server-integration-wysiwyg-html-editor-froala-10.png
+[PHP.com]:http://poser.pugx.org/phpunit/phpunit/require/php
 [PHP-url]:https://PHP.com
 
-[MySql.com]: https://assets.stickpng.com/images/62debc4fff3c6e4b8b5de8d3.png
+[MySql.com]:https://shields.io/badge/MySQL-lightgrey?logo=mysql&style=plastic&logoColor=white&labelColor=blue
 [MysQl-url]:https://MySql.com
 
-[Composer.com]:https://cdn.freebiesupply.com/logos/thumbs/2x/composer-logo.png
-[Composer-url]:https://Composer.com
-
-[JS.com]: https://www.freepnglogos.com/uploads/javascript-png/javascript-logo-transparent-logo-javascript-images-3.png
+[JS.com]:https://shields.io/badge/JavaScript-F7DF1E?logo=JavaScript&logoColor=000&style=flat-square
 [JavaScript-url]:https://JS.com
-
-[css.com]:https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582747_1280.png
-[css-url]:https://css.com
-
-[html.com]:https://res.cloudinary.com/thewebmaster/image/upload/c_scale,f_auto,q_auto:best,w_516/images/html/html5.png
-[html-url]: https://html.com

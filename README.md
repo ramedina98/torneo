@@ -113,7 +113,7 @@ composer install
 composer require vlucas/phpdotenv:^5.6 phpmailer/phpmailer:^6.9
 ```
 
-Likewise, it is required to have a server such as XAMPP, Wamp, or another that can assist in visualizing the project.```
+Likewise, it is required to have a server such as XAMPP, Wamp, or another that can assist in visualizing the project.
 
 ## External Libraries (CDN)
 
@@ -191,8 +191,8 @@ Should the employee not have an account on the platform, either because they are
 
 There are two cases in which the user cannot create an account:
 
-* 1. If they already have an active account.
-* 2. If they are not a gym employee.
+* If they already have an active account.
+* If they are not a gym employee.
 
 Beyond that, the employee will be able to successfully create their account and access the platform.
 
@@ -216,7 +216,7 @@ In the 'Participants' view, information about individuals registered in one or m
 * B - Edit participant information (green button). 
 * C - Delete a participant (red button). 
 * D - Search for a participant using the search input, either by their name, tournament, or team name.
-* E -If you click on the name of the tournament in the table it will send you to a view where it will give you information about the tournament and who is part of it. 
+* E - If you click on the name of the tournament in the table it will send you to a view where it will give you information about the tournament and who is part of it. 
 
 :notebook: If the participant still has an outstanding balance due for payment of the tournament, it will be highlighted in red; once the indebtedness is settled, it will no longer be marked in red."
 
@@ -230,7 +230,7 @@ Similar to the 'Participants' view, here in 'Tournaments', we can also visualize
 * B - Edit tournament information (green button). 
 * C - Delete a tournament (red button). 
 * D - Search for a tournament using the search input, either by their name, center, sport name or price.
-* E -If you click on the name of the tournament in the table it will send you to a view where it will give you information about the tournament and who is part of it. 
+* E - If you click on the name of the tournament in the table it will send you to a view where it will give you information about the tournament and who is part of it. 
 
 :notebook: If the tournament is already full of participants, it will be marked in red in the table and in the tournament options, in the "add participant" view, this option will no longer appear.
 
@@ -306,17 +306,19 @@ Use this space to list resources you find helpful and would like to give credit 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
-[contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
+[contributors-url]: https://github.com/ramedina98/torneo/graphs/contributors
+
 [forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
-[forks-url]: https://github.com/othneildrew/Best-README-Template/network/members
+[forks-url]: https://github.com/ramedina98/torneo/forks
+
 [stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
-[stars-url]: https://github.com/othneildrew/Best-README-Template/stargazers
+[stars-url]: https://github.com/ramedina98/torneo/stargazers
+
 [issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
-[issues-url]: https://github.com/othneildrew/Best-README-Template/issues
-[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
-[license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
+[issues-url]: https://github.com/ramedina98/torneo/issues
+
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/othneildrew
+[linkedin-url]: https://www.linkedin.com/in/ricardo-abraham-medina-marti-del-campo-8baa7827a/
 
 [product-screenshot]: images/screenshot.png
 
